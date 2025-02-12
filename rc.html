@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso Avanzado de Electrónica para Reparación de Celulares</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap');
+
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --accent-color: #e74c3c;
+      --success-color: #2ecc71;
+      --warning-color: #f39c12;
+      --background-color: #f4f4f4;
+      --text-color: #333;
+      --card-background: #fff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition-speed: 0.3s;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    .dark-mode {
+      --primary-color: #3498db;
+      --secondary-color: #34495e;
+      --accent-color: #e74c3c;
+      --success-color: #2ecc71;
+      --warning-color: #f39c12;
+      --background-color: #1a1a1a;
+      --text-color: #f4f4f4;
+      --card-background: #2c2c2c;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background-color: var(--secondary-color);
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    nav {
+      background-color: var(--primary-color);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--box-shadow);
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      margin: 5px 10px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed);
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .content {
+      display: flex;
+      margin-top: 20px;
+      gap: 20px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: var(--card-background);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      transition: background-color var(--transition-speed);
+    }
+
+    .main-content {
+      flex: 1;
+      background-color: var(--card-background);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      transition: background-color var(--transition-speed);
+    }
+
+    h2 {
+      /*color: var(--primary-color);*/
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+
+    .class-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .class-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: var(--background-color);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .class-item:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .class-item.active {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .class-item .mdi {
+      font-size: 1.2rem;
+    }
+
+    .progress-bar {
+      background-color: #e0e0e0;
+      height: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .progress {
+      background-color: var(--success-color);
+      height: 100%;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .material,
+    .activity {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: var(--background-color);
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed);
+    }
+
+    .quiz-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: var(--background-color);
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed);
+    }
+
+    .quiz-question {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .quiz-options {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .quiz-option {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: var(--card-background);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    .quiz-option:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .quiz-option.correct {
+      background-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color var(--transition-speed);
+    }
+
+    button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--secondary-color);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background-color var(--transition-speed);
+      z-index: 1001;
+    }
+
+    .dark-mode-toggle:hover {
+      background-color: var(--primary-color);
+    }
+
+    .dashboard-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-card {
+      background-color: var(--card-background);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      transition: background-color var(--transition-speed);
+    }
+
+    .dashboard-card h3 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+
+    .dashboard-card p {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .class-progress {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .class-progress-bar {
+      flex-grow: 1;
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      margin-right: 10px;
+      overflow: hidden;
+    }
+
+    .class-progress-value {
+      height: 100%;
+      background-color: var(--success-color);
+      transition: width 0.5s ease-in-out;
+    }
+
+    .virtual-lab {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: var(--background-color);
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed);
+    }
+
+    .virtual-lab canvas {
+      width: 100%;
+      height: 300px;
+      border: 1px solid var(--primary-color);
+      border-radius: var(--border-radius);
+    }
+
+    .notes-container {
+      margin-top: 20px;
+    }
+
+    .notes-container textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--primary-color);
+      background-color: var(--card-background);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+      resize: vertical;
+    }
+
+    .forum-container {
+      margin-top: 20px;
+    }
+
+    .forum-post {
+      background-color: var(--background-color);
+      border-radius: var(--border-radius);
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .forum-post h4 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--primary-color);
+      background-color: var(--card-background);
+      color: var(--text-color);
+    }
+
+    .glossary-container {
+      margin-top: 20px;
+    }
+
+    .glossary-term {
+      margin-bottom: 15px;
+    }
+
+    .glossary-term h4 {
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .feedback-container {
+      margin-top: 20px;
+    }
+
+    .feedback-container textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--primary-color);
+      background-color: var(--card-background);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+      resize: vertical;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+    }
+
+
+    .course-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Styles */
+        .course-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .course-header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-title {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-description {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        section {
+            background: #ffffff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover::before {
+            transform: scaleX(1);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #2ecc71;
+            transition: width 0.3s ease;
+        }
+
+        section:hover h3::after {
+            width: 100%;
+        }
+
+        /* Material and Activity Items */
+        .material-item, .activity-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .material-item:hover, .activity-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+            border-left-color: #3498db;
+        }
+
+        /* Button Styles */
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Text Areas */
+        textarea {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 1em;
+            resize: vertical;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Quiz Styles */
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quiz-option {
+            background-color: #ecf0f1;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s;
+        }
+
+        .quiz-option:hover::before {
+            left: 100%;
+        }
+
+        .quiz-option:hover {
+            background-color: #bdc3c7;
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .course-container {
+                padding: 1rem;
+            }
+
+            .course-title {
+                font-size: 2.2em;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+        }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#" :class="{ active: currentView === 'dashboard' }" @click="currentView = 'dashboard'">Dashboard</a></li>
+        <li><a href="#" :class="{ active: currentView === 'course' }" @click="currentView = 'course'">Contenido del Curso</a></li>
+        <!--li><a href="#" :class="{ active: currentView === 'forum' }" @click="currentView = 'forum'">Foro de Discusión</a></li>
+        <li><a href="#" :class="{ active: currentView === 'glossary' }" @click="currentView = 'glossary'">Glosario</a></li>
+        <li><a href="#" :class="{ active: currentView === 'certificate' }" @click="currentView = 'certificate'">Certificado</a></li-->
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="search-container">
+        <input type="text" v-model="searchQuery" @input="searchContent" placeholder="Buscar en el contenido del curso...">
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <h2>Clases</h2>
+          <ul class="class-list">
+            <!-- Usamos el título de la clase como clave para evitar duplicados -->
+            <li v-for="(clase, index) in classes" :key="clase.title"
+                :class="['class-item', { active: currentClass === index }]"
+                @click="selectClass(index)"
+                :style="{ opacity: clase.unlocked ? 1 : 0.5 }">
+              <span>{{ clase.title }}</span>
+              <span :class="['mdi', {
+                'mdi-lock': !clase.unlocked,
+                'mdi-check-circle': clase.completed,
+                'mdi-play-circle': clase.unlocked && !clase.completed
+              }]"></span>
+            </li>
+          </ul>
+          <div class="progress-bar">
+            <div class="progress" :style="{ width: progress + '%' }"></div>
+          </div>
+          <p>Progreso total: {{ progress }}%</p>
+        </div>
+        <div class="main-content">
+          <div v-if="currentView === 'dashboard'">
+            <h2>Dashboard</h2>
+            <div class="dashboard-summary">
+              <div class="dashboard-card">
+                <h3>Progreso Total</h3>
+                <p>{{ progress }}%</p>
+              </div>
+              <div class="dashboard-card">
+                <h3>Clases Completadas</h3>
+                <p>{{ completedClasses }}/{{ classes.length }}</p>
+              </div>
+              <div class="dashboard-card">
+                <h3>Tiempo Estimado</h3>
+                <p>{{ totalEstimatedTime }} horas</p>
+              </div>
+            </div>
+            <h3>Progreso por Clase</h3>
+            <div v-for="(clase, index) in classes" :key="clase.title" class="class-progress">
+              <div class="class-progress-bar">
+                <div class="class-progress-value" :style="{ width: getClassProgress(index) + '%' }"></div>
+              </div>
+              <span>{{ clase.title }} - {{ getClassProgress(index) }}%</span>
+            </div>
+            <canvas id="progressChart"></canvas>
+          </div>
+
+          <div v-else-if="currentView === 'course'" class="course-content">
+            <!-- Encabezado de la clase -->
+            <header class="course-header">
+              <h2 class="course-title">{{ currentClassData.title }}</h2>
+              <p class="course-description">{{ currentClassData.description }}</p>
+            </header>
+          
+            <!-- Sección de Material Teórico -->
+            <section class="materials-section">
+              <h3>Material Teórico</h3>
+              <div v-for="(material, index) in currentClassData.materials" :key="index" class="material-item">
+                <h4>{{ material.title }}</h4>
+                <!-- Se usa v-html para permitir la inserción de formato HTML en el contenido -->
+                <p v-html="material.content"></p>
+              </div>
+            </section>
+          
+            <!-- Sección de Actividades 
+            <section class="activities-section">
+              <h3>Actividades Prácticas</h3>
+              <div v-for="(activity, index) in currentClassData.activities" :key="index" class="activity-item">
+                <h4>{{ activity.title }}</h4>
+                <p>{{ activity.description }}</p>
+              </div>
+            </section>-->
+          
+            <!-- Laboratorio Virtual 
+            <section class="virtual-lab-section">
+              <h3>Laboratorio Virtual</h3>
+              <canvas id="virtualLab"></canvas>
+              <button class="btn-simulation" @click="runSimulation">Ejecutar Simulación</button>
+            </section>-->
+          
+            <!-- Notas del Estudiante 
+            <section class="notes-section">
+              <h3>Mis Notas</h3>
+              <textarea v-model="currentClassData.notes" class="notes-editor" placeholder="Escribe tus notas aquí..."></textarea>
+            </section>-->
+          
+            <!-- Notas Complementarias 
+            <section class="complementary-notes-section">
+              <h3>Notas Complementarias</h3>
+              <textarea v-model="currentClassData.complementaryNotes" class="complementary-notes-editor" placeholder="Agrega notas complementarias, ideas o comentarios adicionales..."></textarea>
+            </section>-->
+          
+            <!-- Sección del Quiz -->
+            <section class="quiz-section" v-if="!currentClassData.completed">
+              <h3>Quiz</h3>
+              <div v-if="currentQuestionIndex < currentClassData.quiz.length">
+                <p class="quiz-question">{{ currentClassData.quiz[currentQuestionIndex].question }}</p>
+                <ul class="quiz-options">
+                  <li v-for="(option, index) in currentClassData.quiz[currentQuestionIndex].options"
+                      :key="index"
+                      :class="['quiz-option', {
+                        'correct': showAnswers && index === currentClassData.quiz[currentQuestionIndex].correctAnswer,
+                        'incorrect': showAnswers && selectedAnswer === index && index !== currentClassData.quiz[currentQuestionIndex].correctAnswer
+                      }]"
+                      @click="selectAnswer(index)">
+                    {{ option }}
+                  </li>
+                </ul>
+                <button class="btn-verify" @click="checkAnswer" v-if="!showAnswers">Verificar Respuesta</button>
+                <button class="btn-next" @click="nextQuestion" v-else>Siguiente Pregunta</button>
+              </div>
+              <div v-else>
+                <p class="quiz-result">Has completado el quiz. Puntuación: {{ quizScore }} de {{ currentClassData.quiz.length }}</p>
+                <button class="btn-complete" @click="completeClass" v-if="quizScore >= currentClassData.quiz.length * 0.7">Marcar clase como completada</button>
+                <button class="btn-retry" @click="resetQuiz" v-else>Reintentar Quiz</button>
+              </div>
+            </section>
+          </div>
+          
+          <div v-else-if="currentView === 'forum'">
+            <h2>Foro de Discusión</h2>
+            <div v-for="(post, index) in forumPosts" :key="post.date + '-' + index" class="forum-post">
+              <h4>{{ post.title }}</h4>
+              <p>{{ post.content }}</p>
+              <small>Por: {{ post.author }} - {{ post.date }}</small>
+            </div>
+            <button @click="addForumPost">Agregar Nueva Publicación</button>
+          </div>
+          <div v-else-if="currentView === 'glossary'">
+            <h2>Glosario de Términos Técnicos</h2>
+            <div v-for="(term, index) in glossaryTerms" :key="term.term" class="glossary-term">
+              <h4>{{ term.term }}</h4>
+              <p>{{ term.definition }}</p>
+            </div>
+          </div>
+          <div v-else-if="currentView === 'certificate'">
+            <h2>Certificado de Finalización</h2>
+            <div v-if="progress === 100">
+              <p>¡Felicidades! Has completado el curso. Aquí está tu certificado:</p>
+              <div id="certificate">
+                <h3>Certificado de Finalización</h3>
+                <p>Este certifica que</p>
+                <h4>{{ studentName }}</h4>
+                <p>ha completado exitosamente el</p>
+                <h4>{{ title }}</h4>
+                <p>Fecha: {{ new Date().toLocaleDateString() }}</p>
+              </div>
+              <button @click="downloadCertificate">Descargar Certificado</button>
+            </div>
+            <div v-else>
+              <p>Completa todas las clases para obtener tu certificado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--button class="dark-mode-toggle" @click="toggleDarkMode">
+      <span class="mdi" :class="isDarkMode ? 'mdi-weather-sunny' : 'mdi-weather-night'"></span>
+    </button>
+    <div class="feedback-container">
+      <h3>Enviar Comentarios</h3>
+      <textarea v-model="feedback" placeholder="Comparte tus comentarios sobre el curso..."></textarea>
+      <button @click="submitFeedback">Enviar Comentarios</button>
+    </div-->
+  </div>
+<!-- Carga la librería de Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <script>
+
+/***********************
+ * Inicialización de Supabase
+ ***********************/
+// Se asume que la librería de Supabase ya ha sido incluida (por ejemplo, vía un script en el HTML)
+window.supabase = supabase.createClient(
+  'https://hygdbhdujdvtuuagwfit.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5Z2RiaGR1amR2dHV1YWd3Zml0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg3Nzg3MzUsImV4cCI6MjA1NDM1NDczNX0.jDIZD6cXQHjkojSg_vJ0Q_cvTXVEG_B_NaiRnJZTDas'
+);
+
+// Verificar si existe el usuario en sessionStorage (clave "user")
+const storedUser = sessionStorage.getItem("user");
+if (!storedUser) {
+  window.location.href = "login.html";
+} else {
+  // Se parsea el usuario (opcional, según lo que necesites)
+  const user = JSON.parse(storedUser);
+  // Aquí puedes continuar utilizando la variable "user" si lo requieres
+}
+
+// Guarda o actualiza el avance del usuario
+async function guardarAvance(alumnoId, moduloActual, porcentajeCompletado, mensajeMotivacional) {
+  const { data, error } = await supabase
+    .from('avance_curso')
+    .upsert([
+      {
+        alumno_id: alumnoId,
+        modulo_actual: moduloActual,
+        porcentaje_completado: porcentajeCompletado,
+        mensaje_motivacional: mensajeMotivacional,
+        fecha_ultimo_acceso: new Date().toISOString()
+      }
+    ], { onConflict: ['alumno_id'] });
+  
+  if (error) {
+    console.error("Error guardando el avance:", error);
+  } else {
+    console.log(`Avance guardado: Módulo ${moduloActual}, ${porcentajeCompletado}% completado`);
+  }
+  return data;
+}
+
+// Carga el avance guardado para el usuario
+async function cargarAvance(alumnoId) {
+  const { data, error } = await supabase
+    .from('avance_curso')
+    .select('*')
+    .eq('alumno_id', alumnoId)
+    .single(); // Suponiendo que cada alumno tiene un único registro
+  
+  if (error) {
+    console.error("Error cargando el avance:", error);
+    return null;
+  }
+  return data;
+}
+
+
+async function getStudentId() {
+  // Extraemos la sesión con la estructura recomendada en supabase‑js v2
+  const { data: { session }, error } = await supabase.auth.getSession();
+  if (error || !session) {
+    console.error("No hay sesión activa:", error);
+    return null;
+  }
+  return session.user.id;
+}
+
+async function signInWithEmail(email, password) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    console.error("Error al iniciar sesión:", error);
+  } else {
+    console.log("Inicio de sesión exitoso:", data);
+    // Guardar la sesión en localStorage
+    // Se asume que data.session es un objeto con access_token y refresh_token, entre otros
+    localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
+  }
+}
+
+async function restoreSession() {
+  const savedSession = localStorage.getItem('supabase.auth.token');
+  if (savedSession) {
+    const session = JSON.parse(savedSession);
+    // Se restablece la sesión utilizando únicamente access_token y refresh_token
+    await supabase.auth.setSession({
+      access_token: session.access_token,
+      refresh_token: session.refresh_token
+    });
+  }
+}
+restoreSession();
+
+async function loadProgress(studentId) {
+  const { data, error } = await supabase
+    .from('avance_curso')
+    .select('*')
+    .eq('alumno_id', studentId);
+    
+  if (error) {
+    console.error("Error cargando el avance del curso:", error);
+    return null;
+  }
+  return data && data.length > 0 ? data[0] : null;
+}
+
+async function saveProgress(studentId, moduloActual, porcentajeCompletado, mensajeMotivacional) {
+  console.log("Guardando progreso...", { studentId, moduloActual, porcentajeCompletado, mensajeMotivacional });
+
+  const { data, error } = await supabase
+    .from('avance_curso')
+    .upsert([
+      {
+        alumno_id: studentId,
+        modulo_actual: moduloActual,
+        porcentaje_completado: porcentajeCompletado,
+        mensaje_motivacional: mensajeMotivacional,
+        fecha_ultimo_acceso: new Date().toISOString()
+      }
+    ], { onConflict: ['alumno_id'] });
+
+  if (error) {
+    console.error("Error al guardar el progreso:", error);
+  } else {
+    console.log("Progreso guardado correctamente:", data);
+  }
+}
+
+async function actualizarProgreso(studentId, moduloActual, porcentajeCompletado) {
+  const nuevoModulo = Math.min(moduloActual + 1, 6); // Asegura que no sobrepase el número máximo de módulos
+  const nuevoPorcentaje = Math.min(porcentajeCompletado + 14.29, 100);
+
+  const { error } = await supabase
+    .from('avance_curso')
+    .update({
+      modulo_actual: nuevoModulo,
+      porcentaje_completado: nuevoPorcentaje,
+      fecha_ultimo_acceso: new Date().toISOString()
+    })
+    .eq('alumno_id', studentId);
+
+  if (error) {
+    console.error("Error actualizando el progreso:", error);
+  } else {
+    console.log(`Progreso actualizado: Módulo ${nuevoModulo}, ${nuevoPorcentaje}% completado`);
+  }
+}
+
+
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Curso Avanzado de Electrónica para Reparación de Celulares',
+        currentView: 'dashboard',
+        currentClass: 0,
+        currentQuestionIndex: 0,
+        quizScore: 0,
+        isDarkMode: false,
+        searchQuery: '',
+        feedback: '',
+        showAnswers: false,
+        student: null,
+
+        selectedAnswer: null,
+        studentName: '',
+        progressData: null,
+        progress: 0,
+        progressValue: 0,
+        globalProgress: 0,
+        currentView: 'dashboard',
+      currentClass: 0,
+      // ... demás propiedades existentes ...
+      student: null,         // Datos del alumno
+      progressData: null ,
+        studentName: 'Estudiante Ejemplo',
+        classes: [
+  {
+    "title": "Introducción a la Electrónica",
+    "description": "Esta clase te brinda una introducción profunda y práctica a la electrónica, estableciendo una base sólida en los principios fundamentales y avanzando hacia la aplicación de circuitos analógicos y digitales. Con simulaciones interactivas, ejercicios prácticos y recursos complementarios, estarás preparado para diseñar y analizar circuitos con confianza.",
+    "progress": 0,
+    "completed": false,
+    "unlocked": true,
+    "estimatedTime": 3,
+    "notes": "Revisa cada sección y aprovecha las simulaciones y ejercicios interactivos para fortalecer tu comprensión.",
+    "materials": [
+      {
+        "id": "teoria",
+        "title": "Teoría de la Electrónica",
+        "content": "\n        <div class=\"teoria-container\">\n          <h3>Conceptos Básicos</h3>\n          <ul class=\"concepto-list\">\n            <li class=\"concepto-item\">\n              <span class=\"icon\">⚡</span>\n              <strong>Voltaje:</strong> Diferencia de potencial que impulsa el flujo de electrones, esencial para el funcionamiento de cualquier circuito (V).\n            </li>\n            <li class=\"concepto-item\">\n              <span class=\"icon\">🔌</span>\n              <strong>Corriente:</strong> Flujo de electrones que circula a través de un conductor, medido en amperios (A).\n            </li>\n            <li class=\"concepto-item\">\n              <span class=\"icon\">🛑</span>\n              <strong>Resistencia:</strong> Oposición al paso de la corriente, fundamental para controlar el comportamiento del circuito (Ω).\n            </li>\n          </ul>\n          <div class=\"formula-container\">\n            <h4>Ley de Ohm:</h4>\n            <p>Relaciona el voltaje (V), la corriente (I) y la resistencia (R):</p>\n            <div class=\"formula\">V = I · R</div>\n            <h4>Potencia:</h4>\n            <p>Calcula la energía consumida o disipada en un circuito:</p>\n            <div class=\"formula\">P = V · I</div>\n          </div>\n          <div class=\"ejemplo-container\">\n            <h4>Ejemplo Práctico:</h4>\n            <p>Si se aplica una fuente de 5V a una resistencia de 220Ω, la corriente resultante es de aproximadamente 22.7 mA, calculada como I = V / R.</p>\n            <button class=\"btn-calcular\" onclick=\"calcularEjemplo()\">Calcular</button>\n            <div id=\"resultado-ejemplo\" class=\"resultado\"></div>\n          </div>\n        </div>\n      ",
+        "completed": false
+      },
+      {
+        "id": "componentes",
+        "title": "Componentes Electrónicos",
+        "content": "\n        <div class=\"componentes-container\">\n          <div class=\"componente-item\">\n            <h3>Resistencias</h3>\n            <p>Identificadas por un código de colores, limitan el flujo de corriente y son esenciales para controlar la intensidad en un circuito.</p>\n            <img src=\"/placeholder.svg?height=100&width=200\" alt=\"Imagen de Resistencias\" class=\"componente-img\">\n          </div>\n          <div class=\"componente-item\">\n            <h3>Capacitores</h3>\n            <p>Almacenan energía en un campo eléctrico, con la relación Q = C · V, y se usan en funciones de filtrado y temporización.</p>\n            <img src=\"/placeholder.svg?height=100&width=200\" alt=\"Imagen de Capacitores\" class=\"componente-img\">\n          </div>\n          <div class=\"componente-item\">\n            <h3>Inductores</h3>\n            <p>Almacenan energía en forma de campo magnético y se utilizan en filtros, osciladores y convertidores de energía.</p>\n            <img src=\"/placeholder.svg?height=100&width=200\" alt=\"Imagen de Inductores\" class=\"componente-img\">\n          </div>\n          <div class=\"componente-item\">\n            <h3>Diodos</h3>\n            <p>Permiten el paso de corriente en un solo sentido, fundamentales en procesos de rectificación y protección de circuitos.</p>\n            <img src=\"/placeholder.svg?height=100&width=200\" alt=\"Imagen de Diodos\" class=\"componente-img\">\n          </div>\n          <div class=\"componente-item\">\n            <h3>Transistores</h3>\n            <p>Actúan como amplificadores o interruptores, siendo clave en la conmutación y amplificación de señales en circuitos electrónicos.</p>\n            <img src=\"/placeholder.svg?height=100&width=200\" alt=\"Imagen de Transistores\" class=\"componente-img\">\n          </div>\n          <div class=\"componente-item\">\n            <h3>Circuitos Integrados</h3>\n            <p>Integran múltiples componentes en un solo chip, permitiendo la miniaturización y la implementación de funciones complejas en dispositivos modernos.</p>\n            <img src=\"/placeholder.svg?height=100&width=200\" alt=\"Imagen de Circuitos Integrados\" class=\"componente-img\">\n          </div>\n        </div>\n      ",
+        "completed": false
+      },
+      {
+        "id": "circuitos",
+        "title": "Circuitos Analógicos y Digitales",
+        "content": "\n        <div class=\"circuitos-container\">\n          <div class=\"circuito-tipo\">\n            <h3>Analógicos</h3>\n            <p>Operan con señales continuas, ideales para aplicaciones como amplificadores de audio y sistemas de control.</p>\n            <div class=\"circuito-ejemplo\">\n              <img src=\"/placeholder.svg?height=150&width=300\" alt=\"Ejemplo de Circuito Analógico\" class=\"circuito-img\">\n              <button class=\"btn-simular\" onclick=\"simularCircuito('analogico')\">Simular Circuito</button>\n            </div>\n          </div>\n          <div class=\"circuito-tipo\">\n            <h3>Digitales</h3>\n            <p>Trabajan con niveles discretos (0 y 1), esenciales para la lógica computacional y el procesamiento digital de señales.</p>\n            <div class=\"circuito-ejemplo\">\n              <img src=\"/placeholder.svg?height=150&width=300\" alt=\"Ejemplo de Circuito Digital\" class=\"circuito-img\">\n              <button class=\"btn-simular\" onclick=\"simularCircuito('digital')\">Simular Circuito</button>\n            </div>\n          </div>\n          <p class=\"integracion-nota\">La integración de circuitos analógicos y digitales permite conectar el mundo físico con sistemas de procesamiento digital para aplicaciones avanzadas.</p>\n        </div>\n      ",
+        "completed": false
+      },
+      {
+        "id": "material-extendido",
+        "title": "Material Teórico Extendido",
+        "content": "\n        <div class=\"material-extendido-container\">\n          <div class=\"seccion\" id=\"introduccion\">\n            <h3>I. Introducción y Contexto Histórico</h3>\n            <p>Explora el surgimiento de la electrónica desde los primeros experimentos con electricidad hasta la revolución de los semiconductores y circuitos integrados.</p>\n            <button class=\"btn-expandir\" onclick=\"expandirSeccion('introduccion-detalle')\">Expandir</button>\n            <div id=\"introduccion-detalle\" class=\"detalle oculto\">\n              <p>Accede a una línea de tiempo interactiva con hitos históricos y descubrimientos fundamentales que marcaron el desarrollo de la electrónica.</p>\n            </div>\n          </div>\n          <div class=\"seccion\" id=\"fundamentos\">\n            <h3>II. Fundamentos de la Electrónica</h3>\n            <ul>\n              <li><strong>Voltaje:</strong> Fuerza que impulsa el movimiento de electrones.</li>\n              <li><strong>Corriente:</strong> Medida del flujo de electrones en un conductor.</li>\n              <li><strong>Resistencia:</strong> Oposición al flujo de corriente, determinante en el diseño de circuitos.</li>\n            </ul>\n            <p>La comprensión de la Ley de Ohm y el cálculo de potencia es esencial para diseñar y analizar circuitos con precisión.</p>\n            <button class=\"btn-expandir\" onclick=\"expandirSeccion('fundamentos-detalle')\">Expandir</button>\n            <div id=\"fundamentos-detalle\" class=\"detalle oculto\">\n              <p>Utiliza nuestra calculadora interactiva para practicar con la Ley de Ohm y realizar cálculos de potencia en tiempo real.</p>\n            </div>\n          </div>\n          <div class=\"seccion\" id=\"componentes-aplicaciones\">\n            <h3>III. Componentes y Aplicaciones</h3>\n            <p>Descubre cómo cada componente, desde resistencias hasta circuitos integrados, se integra en sistemas electrónicos complejos y su aplicación en diversas tecnologías.</p>\n            <button class=\"btn-expandir\" onclick=\"expandirSeccion('componentes-detalle')\">Expandir</button>\n            <div id=\"componentes-detalle\" class=\"detalle oculto\">\n              <p>Visualiza una galería interactiva que detalla el funcionamiento y aplicaciones de cada componente electrónico.</p>\n            </div>\n          </div>\n          <div class=\"seccion\" id=\"aplicaciones-practicas\">\n            <h3>IV. Aplicaciones Prácticas y Ejercicios</h3>\n            <p>Aplica tus conocimientos en ejercicios prácticos, desde el cálculo de resistencias para LEDs hasta el diseño de amplificadores básicos utilizando simuladores virtuales.</p>\n            <button class=\"btn-expandir\" onclick=\"expandirSeccion('aplicaciones-detalle')\">Expandir</button>\n            <div id=\"aplicaciones-detalle\" class=\"detalle oculto\">\n              <p>Accede a enlaces directos a simulaciones y ejercicios prácticos que refuerzan tu aprendizaje.</p>\n            </div>\n          </div>\n          <div class=\"seccion\" id=\"evaluacion-recursos\">\n            <h3>V. Evaluación y Recursos</h3>\n            <p>Complementa tu estudio con actividades evaluativas, tutoriales, documentos y herramientas interactivas para profundizar en cada tema.</p>\n            <button class=\"btn-expandir\" onclick=\"expandirSeccion('recursos-detalle')\">Expandir</button>\n            <div id=\"recursos-detalle\" class=\"detalle oculto\">\n              <p>Encuentra una lista curada de recursos adicionales para ampliar tus conocimientos en electrónica.</p>\n            </div>\n          </div>\n        </div>\n      ",
+        "completed": false
+      }
+    ],
+    "activities": [
+      {
+        "id": "simulacion",
+        "title": "Simulación de Circuitos",
+        "description": "Utiliza herramientas de simulación interactivas como Tinkercad o Proteus para construir y analizar circuitos, verificando en tiempo real los cálculos teóricos de voltaje y corriente.",
+        "completed": false,
+        "content": "\n        <div class=\"simulacion-container\">\n          <p>Selecciona una herramienta de simulación para comenzar:</p>\n          <select id=\"simulador-select\">\n            <option value=\"tinkercad\">Tinkercad</option>\n            <option value=\"proteus\">Proteus</option>\n          </select>\n          <button class=\"btn-iniciar-simulacion\" onclick=\"iniciarSimulacion()\">Iniciar Simulación</button>\n          <div id=\"simulacion-area\" class=\"simulacion-area\">\n            <!-- Espacio para cargar el simulador seleccionado -->\n          </div>\n        </div>\n      "
+      },
+      {
+        "id": "identificacion",
+        "title": "Identificación de Componentes",
+        "description": "Analiza diagramas y fotografías para identificar y clasificar componentes electrónicos, reforzando tu conocimiento práctico con ejercicios interactivos.",
+        "completed": false,
+        "content": "\n        <div class=\"identificacion-container\">\n          <div class=\"componente-galeria\">\n            <!-- Galería de imágenes de componentes -->\n            <img src=\"/placeholder.svg?height=100&width=100\" alt=\"Componente 1\" class=\"componente-img\" onclick=\"identificarComponente(0)\">\n            <img src=\"/placeholder.svg?height=100&width=100\" alt=\"Componente 2\" class=\"componente-img\" onclick=\"identificarComponente(1)\">\n            <img src=\"/placeholder.svg?height=100&width=100\" alt=\"Componente 3\" class=\"componente-img\" onclick=\"identificarComponente(2)\">\n          </div>\n          <div class=\"identificacion-respuesta\">\n            <p>Selecciona un componente y elige su nombre:</p>\n            <select id=\"componente-select\">\n              <option value=\"\">Selecciona...</option>\n              <option value=\"resistencia\">Resistencia</option>\n              <option value=\"capacitor\">Capacitor</option>\n              <option value=\"transistor\">Transistor</option>\n            </select>\n            <button class=\"btn-verificar\" onclick=\"verificarIdentificacion()\">Verificar</button>\n          </div>\n          <div id=\"identificacion-resultado\" class=\"resultado\"></div>\n        </div>\n      "
+      }
+    ],
+    "quiz": [
+      {
+        "question": "¿Cuál es la unidad de medida del voltaje?",
+        "options": ["Amperio", "Voltio", "Ohmio", "Vatio"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "¿Qué componente se utiliza para almacenar carga eléctrica en un circuito?",
+        "options": ["Resistencia", "Diodo", "Capacitor", "Transistor"],
+        "correctAnswer": 2
+      },
+      {
+        "question": "¿Qué ley relaciona el voltaje, la corriente y la resistencia?",
+        "options": ["Ley de Faraday", "Ley de Ohm", "Ley de Coulomb", "Ley de Kirchhoff"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "¿Cuál es la función principal de un transistor?",
+        "options": ["Almacenar energía", "Generar electricidad", "Amplificar o conmutar señales", "Medir voltaje"],
+        "correctAnswer": 2
+      }
+    ],
+    "resources": [
+      {
+        "title": "Libro de Texto: Fundamentos de Electrónica",
+        "type": "pdf",
+        "url": "https://ejemplo.com/fundamentos-electronica.pdf"
+      },
+      {
+        "title": "Video Tutorial: Introducción a los Circuitos",
+        "type": "video",
+        "url": "https://ejemplo.com/intro-circuitos-video"
+      },
+      {
+        "title": "Simulador Online de Circuitos",
+        "type": "tool",
+        "url": "https://www.tinkercad.com/circuits"
+      }
+    ]
+  },
+  {
+  "title": "Herramientas y Técnicas de Reparación: Del Principiante al Avanzado 🚀",
+  "description": "Disfruta de un curso interactivo con un diseño armonioso, animaciones envolventes y transiciones suaves que te sumergen en el mundo de la reparación electrónica. Cada módulo, actividad y recurso ha sido creado para ofrecerte una experiencia de aprendizaje intuitiva, visual y dinámica, que combina teoría y práctica de manera fluida.",
+  "progress": 0,
+  "completed": false,
+  "unlocked": true,
+  "estimatedTime": 4,
+  "theme": "modern-animated",
+  "advancedDesign": true,
+  "notes": "💡 Avanza de manera progresiva, aprovechando cada recurso interactivo y animación envolvente. El curso incorpora simulaciones en tiempo real, feedback visual y elementos dinámicos para que cada concepto se asimile de forma natural. Sigue los protocolos de seguridad y disfruta de cada transición: ¡tu experiencia de aprendizaje será tan inspiradora como efectiva!",
+  "materials": [
+    {
+      "id": "fundamentos",
+      "title": "Fundamentos de la Reparación Electrónica ⚡",
+      "icon": "circuit-board",
+      "content": "<section class=\"material-section animate__animated animate__fadeInUp\" data-aos=\"fade-up\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h2>Fundamentos de la Reparación Electrónica ⚙️</h2>\n    <p class=\"subtitulo\">Inicia tu viaje con una introducción interactiva a los principios básicos de la electrónica.</p>\n  </header>\n  <article class=\"material-content\">\n    <p>Descubre conceptos esenciales a través de simuladores en tiempo real y animaciones envolventes:</p>\n    <ul>\n      <li><strong>Electricidad y Electrónica:</strong> Comprende el voltaje, la corriente, la resistencia y la capacitancia con gráficos interactivos.</li>\n      <li><strong>Componentes:</strong> Explora el funcionamiento de resistencias, condensadores, diodos y transistores mediante diagramas animados y tooltips dinámicos.</li>\n      <li><strong>Diagramas y PCBs:</strong> Manipula esquemas y placas de circuito impreso con laboratorios virtuales y tutoriales visuales.</li>\n    </ul>\n    <p>Una experiencia inmersiva que fusiona teoría y práctica en un entorno 100% interactivo.</p>\n  </article>\n</section>",
+      "completed": false
+    },
+    {
+      "id": "diagnostico",
+      "title": "Herramientas de Diagnóstico y Medición 🔍",
+      "icon": "tools",
+      "content": "<section class=\"material-section animate__animated animate__fadeInUp\" data-aos=\"fade-up\" data-aos-delay=\"200\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h2>Herramientas de Diagnóstico y Medición 🔧</h2>\n    <p class=\"subtitulo\">Interacciona con herramientas avanzadas mediante demostraciones en vivo y simulaciones 3D.</p>\n  </header>\n  <article class=\"material-content\">\n    <p>Aprende a utilizar instrumentos esenciales para diagnosticar fallas:</p>\n    <ul>\n      <li><strong>Multímetros:</strong> Realiza mediciones precisas de voltaje, corriente y resistencia con tutoriales interactivos.</li>\n      <li><strong>Osciloscopios:</strong> Visualiza formas de onda y detecta anomalías con animaciones en 3D y simulaciones en tiempo real.</li>\n      <li><strong>Analizadores Lógicos:</strong> Experimenta con circuitos digitales y observa señales mediante ejemplos prácticos y dinámicos.</li>\n      <li><strong>Cámaras Termográficas:</strong> Visualiza el flujo térmico y detecta puntos críticos a través de simulaciones interactivas.</li>\n    </ul>\n    <p>Este módulo te permite aprender mediante feedback visual y sonoro en cada paso.</p>\n  </article>\n</section>",
+      "completed": false
+    },
+    {
+      "id": "soldadura",
+      "title": "Técnicas de Soldadura: Convencional y SMD 🔥",
+      "icon": "soldering-iron",
+      "content": "<section class=\"material-section animate__animated animate__fadeInUp\" data-aos=\"fade-up\" data-aos-delay=\"400\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h2>Técnicas de Soldadura: Convencional y SMD 🔥</h2>\n    <p class=\"subtitulo\">Perfecciona tu técnica con demostraciones visuales y prácticas interactivas adaptadas a cada tipo de componente.</p>\n  </header>\n  <article class=\"material-content\">\n    <p>Domina el arte de soldar a través de:</p>\n    <ul>\n      <li><strong>Preparación del Área:</strong> Guías animadas para organizar y limpiar tu espacio de trabajo de forma eficiente.</li>\n      <li><strong>Uso del Flux:</strong> Aprende cómo el flux mejora la conductividad mediante simulaciones y videos demostrativos.</li>\n      <li><strong>Control de Temperatura:</strong> Utiliza estaciones de soldadura con gráficos en tiempo real que te muestran el control térmico óptimo.</li>\n      <li><strong>Técnicas SMD:</strong> Sigue tutoriales interactivos paso a paso para soldar componentes miniaturizados con precisión.</li>\n    </ul>\n    <p>Este módulo es tu puerta de entrada a la soldadura profesional, combinando videos, simulaciones y prácticas guiadas.</p>\n  </article>\n</section>",
+      "completed": false
+    },
+    {
+      "id": "mantenimiento",
+      "title": "Mantenimiento y Calibración de Equipos 🛡️",
+      "icon": "maintenance",
+      "content": "<section class=\"material-section animate__animated animate__fadeInUp\" data-aos=\"fade-up\" data-aos-delay=\"600\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h2>Mantenimiento y Calibración de Equipos 🛡️</h2>\n    <p class=\"subtitulo\">Mantén tus herramientas en perfecto estado con prácticas de mantenimiento preventivo y calibración precisa.</p>\n  </header>\n  <article class=\"material-content\">\n    <p>Aprende técnicas esenciales para:</p>\n    <ul>\n      <li><strong>Limpieza y Cuidado:</strong> Procedimientos animados y checklist interactivos para la limpieza y mantenimiento de equipos.</li>\n      <li><strong>Calibración:</strong> Estrategias demostradas mediante simulaciones interactivas que garantizan mediciones exactas.</li>\n      <li><strong>Verificación de Protocolos:</strong> Métodos de inspección presentados a través de videos y tutoriales dinámicos.</li>\n    </ul>\n    <p>Participa en laboratorios virtuales y ejercicios prácticos para asegurar que tus herramientas funcionen siempre a su máximo rendimiento.</p>\n  </article>\n</section>",
+      "completed": false
+    },
+    {
+      "id": "seguridad",
+      "title": "Normativas de Seguridad y Procedimientos 🔒",
+      "icon": "safety-shield",
+      "content": "<section class=\"material-section animate__animated animate__fadeInUp\" data-aos=\"fade-up\" data-aos-delay=\"800\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h2>Normativas de Seguridad y Procedimientos de Trabajo 🔒</h2>\n    <p class=\"subtitulo\">Garantiza un entorno de trabajo seguro con protocolos y normativas presentados de forma interactiva.</p>\n  </header>\n  <article class=\"material-content\">\n    <p>Explora las prácticas esenciales para la seguridad:</p>\n    <ul>\n      <li><strong>Prevención ESD:</strong> Aprende a proteger componentes sensibles mediante animaciones interactivas que muestran el uso correcto de equipos anti-ESD.</li>\n      <li><strong>Equipos de Protección:</strong> Conoce los EPP recomendados a través de videos y demostraciones visuales que detallan su uso adecuado.</li>\n      <li><strong>Procedimientos de Emergencia:</strong> Simula escenarios de emergencia y aprende protocolos de acción mediante ejercicios interactivos.</li>\n      <li><strong>Normativas Internacionales:</strong> Accede a recursos y enlaces interactivos que te muestran los estándares IEC, ANSI y más.</li>\n    </ul>\n    <p>Con estudios de caso y evaluaciones interactivas, estarás preparado para identificar y mitigar riesgos de manera profesional.</p>\n  </article>\n</section>",
+      "completed": false
+    }
+  ],
+  "activities": [
+    {
+      "id": "simulacion-diagnostico",
+      "title": "Simulación Virtual de Diagnóstico 🔎",
+      "description": "Sumérgete en una experiencia interactiva donde diagnosticarás fallas en tiempo real utilizando herramientas avanzadas y feedback visual inmediato.",
+      "completed": false,
+      "content": "<section class=\"activity-section animate__animated animate__fadeIn\" data-aos=\"fade-in\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h3>Simulación Virtual de Diagnóstico 🔎</h3>\n    <p class=\"subtitulo\">Pon a prueba tus habilidades en un entorno simulado, interactivo y lleno de feedback en tiempo real.</p>\n  </header>\n  <article class=\"activity-content\">\n    <p>Interactúa con un simulador avanzado para seleccionar herramientas, interpretar señales y diagnosticar fallas, recibiendo retroalimentación visual y sonora a cada paso.</p>\n    <button class=\"btn btn-primary btn-animated\" onclick=\"iniciarSimulacionDiagnostico()\">Iniciar Simulación</button>\n    <div id=\"simulacion-diagnostico-area\" class=\"simulation-area\"></div>\n  </article>\n</section>",
+      "completed": false
+    },
+    {
+      "id": "practica-soldadura",
+      "title": "Práctica Guiada de Soldadura en Placa Real 🔥",
+      "description": "Participa en una práctica interactiva y visualmente estimulante donde soldarás en un entorno que simula una placa real, recibiendo feedback en tiempo real.",
+      "completed": false,
+      "content": "<section class=\"activity-section animate__animated animate__fadeIn\" data-aos=\"fade-in\" data-aos-delay=\"150\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h3>Práctica Guiada de Soldadura en Placa Real 🔥</h3>\n    <p class=\"subtitulo\">Siente la experiencia de trabajar en una placa real con guías animadas e interacciones en tiempo real.</p>\n  </header>\n  <article class=\"activity-content\">\n    <p>Sigue paso a paso las instrucciones animadas y participa en simulaciones 3D que te permitirán soldar con precisión, mientras recibes feedback instantáneo para perfeccionar tu técnica.</p>\n    <button class=\"btn btn-primary btn-animated\" onclick=\"iniciarPracticaSoldadura()\">Iniciar Práctica</button>\n    <div id=\"practica-soldadura-area\" class=\"practice-area\"></div>\n  </article>\n</section>",
+      "completed": false
+    },
+    {
+      "id": "analisis-fallas",
+      "title": "Análisis Comparativo y Estudio de Casos de Fallas 📊",
+      "description": "Participa en un análisis colaborativo interactivo de casos reales para desarrollar un enfoque crítico y analítico en la resolución de problemas.",
+      "completed": false,
+      "content": "<section class=\"activity-section animate__animated animate__fadeIn\" data-aos=\"fade-in\" data-aos-delay=\"300\" data-aos-duration=\"1000\">\n  <header class=\"componente-item\">\n    <h3>Análisis Comparativo y Estudio de Casos de Fallas 📊</h3>\n    <p class=\"subtitulo\">Comparte ideas y soluciones en un entorno colaborativo que fomenta el pensamiento crítico y la innovación.</p>\n  </header>\n  <article class=\"activity-content\">\n    <p>Investiga, analiza y discute casos reales de fallas, elaborando propuestas de mejora en un entorno interactivo y colaborativo.</p>\n    <button class=\"btn btn-primary btn-animated\" onclick=\"iniciarAnalisisFallas()\">Iniciar Análisis</button>\n    <div id=\"analisis-fallas-area\" class=\"analysis-area\"></div>\n  </article>\n</section>",
+      "completed": false
+    }
+  ],
+  "quiz": [
+    {
+      "question": "¿Cuál es la función principal de un multímetro en la reparación electrónica?",
+      "options": [
+        "Medir la intensidad de la luz",
+        "Diagnosticar fallas en software",
+        "Medir voltaje, corriente y resistencia",
+        "Almacenar datos de los circuitos"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "¿Qué técnica de soldadura se utiliza para componentes de montaje superficial (SMD)?",
+      "options": [
+        "Soldadura por puntos",
+        "Soldadura SMD",
+        "Soldadura TIG",
+        "Soldadura MIG"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "¿Cuál es una práctica recomendada para evitar daños por descargas electrostáticas (ESD)?",
+      "options": [
+        "Utilizar guantes aislantes y pulseras anti-ESD",
+        "Trabajar sin protección para mayor destreza",
+        "Ignorar las recomendaciones",
+        "Manipular componentes únicamente con herramientas metálicas"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "¿Por qué es esencial calibrar regularmente las herramientas de medición?",
+      "options": [
+        "Para mejorar la apariencia de los equipos",
+        "Para asegurar la precisión y confiabilidad de las mediciones",
+        "Para aumentar la velocidad de diagnóstico sin importar la exactitud",
+        "Para reducir el consumo eléctrico de los dispositivos"
+      ],
+      "correctAnswer": 1
+    }
+  ],
+  "resources": [
+    {
+      "title": "Manual de Reparación Electrónica 📘",
+      "type": "pdf",
+      "url": "https://ejemplo.com/manual-reparacion.pdf"
+    },
+    {
+      "title": "Video Tutorial: Técnicas de Soldadura 🎥",
+      "type": "video",
+      "url": "https://ejemplo.com/tecnica-soldadura-video"
+    },
+    {
+      "title": "Simulador Online de Diagnóstico 🖥️",
+      "type": "tool",
+      "url": "https://ejemplo.com/simulador-diagnostico"
+    }
+  ]
+},
+          {
+            title: 'Diagnóstico de Fallas en Celulares',
+            description: 'Esta clase se centra en el diagnóstico avanzado de fallas en dispositivos móviles. Se revisan técnicas para identificar problemas tanto en hardware como en software, utilizando herramientas especializadas y el análisis de circuitos. El estudiante aprenderá a interpretar diagramas, utilizar equipos de medición y realizar diagnósticos precisos para solucionar incidencias comunes y complejas en celulares.',
+            materials: [
+              { 
+                title: 'Identificación de Fallas Comunes', 
+                content: 'Estudio de problemas frecuentes en celulares, tales como fallas en la batería, pantalla, conectores y circuitos internos. Se abordan síntomas, causas y posibles soluciones mediante ejemplos reales.' 
+              },
+              { 
+                title: 'Herramientas de Diagnóstico', 
+                content: 'Descripción de equipos y software utilizados en el diagnóstico de fallas: multímetros, JTAG, analizadores lógicos y herramientas específicas para dispositivos móviles.' 
+              },
+              { 
+                title: 'Interpretación de Diagramas y Esquemas', 
+                content: 'Técnicas para leer y comprender diagramas eléctricos y esquemas de circuitos, facilitando la identificación de puntos críticos y el análisis de fallas.' 
+              }
+            ],
+            activities: [
+              { 
+                title: 'Caso Práctico de Diagnóstico', 
+                description: 'Análisis de un caso real en el que se debe identificar y solucionar una falla en un celular, aplicando las técnicas y herramientas aprendidas.' 
+              },
+              { 
+                title: 'Análisis con Software de Diagnóstico', 
+                description: 'Uso de aplicaciones especializadas para evaluar el funcionamiento interno del dispositivo y detectar anomalías en el rendimiento.' 
+              }
+            ],
+            quiz: [
+              {
+                question: '¿Cuál es un síntoma típico de falla en la batería de un celular?',
+                options: ['Sobrecalentamiento', 'Descarga rápida', 'Pantalla congelada', 'Mal funcionamiento del altavoz'],
+                correctAnswer: 1
+              },
+              {
+                question: '¿Qué herramienta de diagnóstico permite analizar la comunicación interna entre componentes de un celular?',
+                options: ['Multímetro', 'Software de análisis', 'JTAG', 'Analizador lógico'],
+                correctAnswer: 2
+              }
+            ],
+            completed: false,
+            unlocked: false,
+            estimatedTime: 5,
+            notes: ''
+          },
+          {
+            title: 'Reparación Avanzada y Microssoldadura',
+            description: 'Técnicas avanzadas de reparación y reemplazo de componentes a nivel de placa.',
+            materials: [
+              { title: 'Microsoldadura', content: 'Técnicas de microsoldadura para componentes BGA y QFN.' },
+              { title: 'Reparación de Placas', content: 'Diagnóstico y reparación de cortocircuitos y pistas dañadas.' }
+            ],
+            activities: [
+              { title: 'Práctica 4', description: 'Realizar microsoldadura en una placa de práctica.' }
+            ],
+            quiz: [
+              {
+                question: '¿Qué significa BGA en el contexto de microsoldadura?',
+                options: ['Bola de Goma Adhesiva', 'Arreglo de Rejilla de Bolas', 'Análisis de Ganancia Básica', 'Acelerador de Gráficos Básico'],
+                correctAnswer: 1
+              },
+              {
+                question: '¿Qué herramienta es esencial para la microsoldadura?',
+                options: ['Martillo', 'Estación de aire caliente', 'Destornillador', 'Pinzas'],
+                correctAnswer: 1
+              }
+            ],
+            completed: false,
+            unlocked: false,
+            estimatedTime: 5,
+            notes: ''
+          },
+          {
+            title: 'Reparación de Pantallas y Displays',
+            description: 'Técnicas para diagnosticar y reparar problemas en pantallas de celulares.',
+            materials: [
+              { title: 'Tipos de Pantallas', content: 'LCD, OLED, AMOLED: diferencias y características.' },
+              { title: 'Problemas Comunes', content: 'Pixeles muertos, líneas, problemas de retroiluminación.' }
+            ],
+            activities: [
+              { title: 'Práctica 5', description: 'Reemplazo de pantalla en un modelo de práctica.' }
+            ],
+            quiz: [
+              {
+                question: '¿Qué tipo de pantalla no requiere retroiluminación?',
+                options: ['LCD', 'OLED', 'TFT', 'IPS'],
+                correctAnswer: 1
+              },
+              {
+                question: '¿Cuál es una causa común de líneas en la pantalla?',
+                options: ['Batería baja', 'Conexión suelta', 'Sobrecalentamiento', 'Virus'],
+                correctAnswer: 1
+              }
+            ],
+            completed: false,
+            unlocked: false,
+            estimatedTime: 4,
+            notes: ''
+          },
+          {
+            title: 'Reparación de Problemas de Batería',
+            description: 'Diagnóstico y solución de problemas relacionados con la batería y carga.',
+            materials: [
+              { title: 'Tipos de Baterías', content: 'Li-Ion, Li-Po: características y precauciones.' },
+              { title: 'Circuitos de Carga', content: 'Componentes y funcionamiento del sistema de carga.' }
+            ],
+            activities: [
+              { title: 'Práctica 6', description: 'Diagnóstico y reemplazo de batería.' }
+            ],
+            quiz: [
+              {
+                question: '¿Cuál es el voltaje típico de una batería de celular?',
+                options: ['1.5V', '3.7V', '9V', '12V'],
+                correctAnswer: 1
+              },
+              {
+                question: '¿Qué componente protege la batería contra sobrecarga?',
+                options: ['Resistencia', 'Capacitor', 'Circuito de protección', 'Diodo'],
+                correctAnswer: 2
+              }
+            ],
+            completed: false,
+            unlocked: false,
+            estimatedTime: 3,
+            notes: ''
+          },
+          {
+            title: 'Reparación de Problemas de Software',
+            description: 'Solución de problemas de software y actualización de sistemas operativos.',
+            materials: [
+              { title: 'Sistemas Operativos Móviles', content: 'Android, iOS: características y diferencias.' },
+              { title: 'Herramientas de Diagnóstico', content: 'Software para identificar problemas de sistema.' }
+            ],
+            activities: [
+              { title: 'Práctica 7', description: 'Actualización de sistema operativo y resolución de problemas comunes.' }
+            ],
+            quiz: [
+              {
+                question: '¿Qué es el "bootloop" en un celular?',
+                options: ['Un virus', 'Un reinicio continuo', 'Una aplicación', 'Un tipo de batería'],
+                correctAnswer: 1
+              },
+              {
+                question: '¿Qué modo se usa para diagnosticar problemas de software en Android?',
+                options: ['Modo avión', 'Modo seguro', 'Modo silencioso', 'Modo de ahorro de energía'],
+                correctAnswer: 1
+              }
+            ],
+            completed: false,
+            unlocked: false,
+            estimatedTime: 4,
+            notes: ''
+          }
+        ],
+        forumPosts: [
+          { title: 'Duda sobre capacitores', content: '¿Alguien puede explicar la diferencia entre capacitores electrolíticos y cerámicos?', author: 'Juan', date: '2023-05-15' },
+          { title: 'Tip para soldadura SMD', content: 'He descubierto que usar flux hace mucho más fácil la soldadura de componentes SMD.', author: 'María', date: '2023-05-16' }
+        ],
+        glossaryTerms: [
+          { term: 'SMD', definition: 'Surface Mount Device (Dispositivo de Montaje Superficial): Componentes electrónicos diseñados para ser montados directamente sobre la superficie de una placa de circuito impreso.' },
+          { term: 'BGA', definition: 'Ball Grid Array (Matriz de Rejilla de Bolas): Tipo de empaquetado de circuitos integrados que utiliza una matriz de bolas de soldadura para las conexiones eléctricas y mecánicas a la placa.' },
+          { term: 'Flux', definition: 'Sustancia química que se utiliza en el proceso de soldadura para limpiar y mejorar el flujo del metal de soldadura.' },
+          { term: 'JTAG', definition: 'Joint Test Action Group: Interfaz de depuración utilizada para probar PCBs y chips de memoria.' },
+          { term: 'ESD', definition: 'Electrostatic Discharge (Descarga Electrostática): Fenómeno que puede dañar componentes electrónicos sensibles.' }
+        ]
+      },
+      computed: {
+
+  currentClassData() {
+    return this.classes[this.currentClass];
+  },
+
+        completedClasses() {
+          return this.classes.filter(c => c.completed).length;
+        },
+        totalEstimatedTime() {
+          return this.classes.reduce((total, clase) => total + clase.estimatedTime, 0);
+        },
+        // Propiedad computada para acceder de forma segura a la clase seleccionada
+        currentClassData() {
+          return this.classes[this.currentClass] || { 
+            title: '', 
+            description: '', 
+            materials: [], 
+            activities: [], 
+            quiz: [], 
+            completed: false, 
+            unlocked: false, 
+            estimatedTime: 0, 
+            notes: '',
+          };
+        }
+      },
+      methods: {
+        selectClass(index) {
+          if (this.classes[index] && this.classes[index].unlocked) {
+            this.currentClass = index;
+            this.currentView = 'course';
+            this.resetQuiz();
+          }
+        },
+        selectAnswer(index) {
+          this.selectedAnswer = index;
+        },
+        checkAnswer() {
+          if (this.selectedAnswer !== null) {
+            this.showAnswers = true;
+            if (this.selectedAnswer === this.currentClassData.quiz[this.currentQuestionIndex].correctAnswer) {
+              this.quizScore++;
+            }
+          }
+        },
+        nextQuestion() {
+          this.currentQuestionIndex++;
+          this.showAnswers = false;
+          this.selectedAnswer = null;
+        },
+
+
+        resetQuiz() {
+          this.currentQuestionIndex = 0;
+          this.quizScore = 0;
+          this.showAnswers = false;
+          this.selectedAnswer = null;
+        },
+        toggleDarkMode() {
+          this.isDarkMode = !this.isDarkMode;
+          document.body.classList.toggle('dark-mode', this.isDarkMode);
+        },
+        getClassProgress(index) {
+          if (index < 0 || index >= this.classes.length) return 0;
+          const clase = this.classes[index];
+          if (!clase) return 0;
+          if (clase.completed) return 100;
+          if (!clase.unlocked) return 0;
+          const totalQuestions = (clase.quiz && clase.quiz.length) || 0;
+          const answeredQuestions = index === this.currentClass ? this.currentQuestionIndex : 0;
+          return totalQuestions > 0 ? Math.round((answeredQuestions / totalQuestions) * 100) : 0;
+        },
+        searchContent() {
+          console.log('Buscando:', this.searchQuery);
+        },
+        runSimulation() {
+          const canvas = document.getElementById('virtualLab');
+          const ctx = canvas.getContext('2d');
+          console.log('Ejecutando simulación');
+        },
+        addForumPost() {
+          const newPost = {
+            title: 'Nueva Publicación',
+            content: 'Contenido de la nueva publicación',
+            author: 'Usuario',
+            date: new Date().toISOString().split('T')[0]
+          };
+          this.forumPosts.push(newPost);
+        },
+        submitFeedback() {
+          console.log('Feedback enviado:', this.feedback);
+          this.feedback = '';
+        },
+        
+        updateProgressChart() {
+          this.$nextTick(() => {
+            const chartElement = document.getElementById('progressChart');
+            if (chartElement) {
+              const ctx = chartElement.getContext('2d');
+              new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: this.classes.map(c => c.title),
+                  datasets: [{
+                    label: 'Progreso por Clase',
+                    data: this.classes.map((clase, index) => this.getClassProgress(index)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      max: 100
+                    }
+                  }
+                }
+              });
+            }
+          });
+        },
+        downloadCertificate() {
+          console.log('Descargando certificado');
+        },
+
+   // Carga los datos del estudiante desde sessionStorage
+
+    // Verifica que el curso esté pagado (se asume que la tabla "compras" y el campo "estado" existen)
+    async checkCoursePayment() {
+      if (this.student && this.student.id) {
+        const { data, error } = await supabase
+          .from("compras")
+          .select("estado")
+          .eq("alumno_id", this.student.id)
+          .eq("estado", "pagado");
+        if (error) {
+          console.error("Error verificando la compra:", error);
+          window.location.href = "login.html";
+        } else if (!data || data.length === 0) {
+          window.location.href = "login.html";
+        }
+      } else {
+        window.location.href = "login.html";
+      }
+    },
+
+
+    // Guarda el avance del curso en la base de datos
+    async saveCourseProgress() {
+      if (this.student && this.student.id) {
+        const moduloActual = this.currentClass + 1;
+        const porcentajeCompletado = this.progress;
+        const mensajeMotivacional = "¡Excelente trabajo, sigue avanzando!";
+        await saveProgress(this.student.id, moduloActual, porcentajeCompletado, mensajeMotivacional);
+      }
+    },
+        getClassProgress(index) {
+  // Verifica que el índice esté dentro del rango válido
+  if (index < 0 || index >= this.classes.length) return 0;
+
+  const clase = this.classes[index];
+
+  // Verifica que la clase existe
+  if (!clase) return 0;
+
+  // Si la clase está completada, el progreso es del 100%
+  if (clase.completed) return 100;
+
+  // Si la clase no está desbloqueada, el progreso es 0
+  if (!clase.unlocked) return 0;
+
+  // Calcula el total de preguntas del quiz
+  const totalQuestions = (clase.quiz && Array.isArray(clase.quiz)) ? clase.quiz.length : 0;
+
+  // Calcula el número de preguntas respondidas en la clase actual
+  const answeredQuestions = (index === this.currentClass) ? this.currentQuestionIndex : 0;
+
+  // Devuelve el progreso en porcentaje, evitando divisiones por cero
+  return totalQuestions > 0 ? Math.round((answeredQuestions / totalQuestions) * 100) : 0;
+},
+
+    // Carga los datos del estudiante (por ejemplo, desde sessionStorage)
+    async loadStudentData() {
+      const storedUser = sessionStorage.getItem("user");
+      if (storedUser) {
+        this.student = JSON.parse(storedUser);
+        this.studentName = `${this.student.nombre} ${this.student.apellido}`;
+      } else {
+        window.location.href = "login.html";
+      }
+    },
+
+    // Método para cargar el avance del curso al iniciar
+    async loadCourseProgress() {
+      if (this.student && this.student.id) {
+        const avanceGuardado = await cargarAvance(this.student.id);
+        if (avanceGuardado) {
+          // Se asume que en la base de datos "modulo_actual" es 1-index (1,2,3,…)
+          this.currentClass = avanceGuardado.modulo_actual - 1;
+          this.progress = avanceGuardado.porcentaje_completado;
+          console.log(`Avance cargado: Módulo ${avanceGuardado.modulo_actual}, ${avanceGuardado.porcentaje_completado}% completado`);
+        } else {
+          // Si no hay avance, se crea uno inicial (módulo 1, 0% completado)
+          await guardarAvance(this.student.id, 1, 0, "¡Bienvenido al curso!");
+        }
+                // Desbloquea las clases hasta el módulo alcanzado
+                this.unlockClasses();
+      }
+    },
+
+        // Función para desbloquear las clases hasta donde el alumno ha avanzado
+        unlockClasses() {
+      for (let i = 0; i < this.classes.length; i++) {
+        // Desbloquea la clase si el índice es menor o igual al módulo actual alcanzado
+        if (i <= this.currentClass) {
+          this.classes[i].unlocked = true;
+        } else {
+          this.classes[i].unlocked = false;
+        }
+      }
+    },
+
+    // Método que se llama al completar una clase o módulo
+    async completeClass() {
+      // Marca la clase actual como completada (esto es para el estado local, por ejemplo, para actualizar la interfaz)
+      this.classes[this.currentClass].completed = true;
+      
+      // Desbloquea la siguiente clase si existe
+      if (this.currentClass < this.classes.length - 1) {
+        this.classes[this.currentClass + 1].unlocked = true;
+      }
+      
+      // Calcula el nuevo avance:
+      // - Se suma 1 al módulo actual (suponiendo que currentClass es 0-index y modulo_actual es 1-index)
+      // - Se incrementa el porcentaje, por ejemplo, 14.29% por módulo (ajusta este valor según el total de módulos)
+      const nuevoModulo = this.currentClass + 1 + 1;
+      const incremento = 14.29;
+      const nuevoPorcentaje = Math.min(this.progress + incremento, 100);
+      
+      // Guarda el avance en la base de datos
+      await guardarAvance(this.student.id, nuevoModulo, nuevoPorcentaje, "¡Excelente trabajo, sigue avanzando!");
+      
+      // Actualiza la variable local de avance y pasa al siguiente módulo si es necesario
+      this.progress = nuevoPorcentaje;
+      console.log(`Progreso actualizado: Módulo ${nuevoModulo}, ${nuevoPorcentaje}% completado`);
+      
+      // Si deseas avanzar en la interfaz:
+      if (this.currentClass < this.classes.length - 1) {
+        this.currentClass++;
+      }
+    }
+
+      },
+
+      async mounted() {
+    // Se carga la información del estudiante y se verifica el pago
+    await this.loadStudentData();
+    await this.checkCoursePayment();
+    await this.loadCourseProgress();
+  
+    // Actualiza el gráfico de progreso
+    this.$nextTick(() => {
+      this.updateProgressChart();
+    });
+  }
+    });
+  </script>
+</body>
+</html>
