@@ -675,6 +675,53 @@
                 padding: 1.5rem;
             }
         }
+            /* Estilos básicos para la visualización */
+    .circuitos-container {
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+    }
+    .circuito-tipo {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    .circuito-img {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .btn-simular {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .sim-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #f9f9f9;
+      border: 2px solid #ccc;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .sim-container h3 {
+      margin-top: 0;
+    }
+    .btn-cerrar {
+      margin-top: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -1018,6 +1065,88 @@ async function actualizarProgreso(studentId, moduloActual, porcentajeCompletado)
   }
 }
 
+     // Función principal que redirige según el tipo de circuito
+ function simularCircuito(tipo) {
+      switch (tipo) {
+        case 'analogico':
+          simularAnalogico();
+          break;
+        case 'digital':
+          simularDigital();
+          break;
+        default:
+          console.error('Tipo de circuito no reconocido');
+      }
+    }
+
+    // Función para simular un circuito analógico
+    function simularAnalogico() {
+      // Crear un contenedor modal para la simulación
+      const simContainer = document.createElement('div');
+      simContainer.className = 'sim-container';
+      simContainer.innerHTML = '<h3>Simulación de Circuito Analógico</h3>';
+
+      // Crear un canvas para dibujar la señal senoidal
+      const canvas = document.createElement('canvas');
+      canvas.width = 300;
+      canvas.height = 150;
+      simContainer.appendChild(canvas);
+
+      // Dibujar una onda senoidal en el canvas
+      const ctx = canvas.getContext('2d');
+      ctx.beginPath();
+      for (let x = 0; x < canvas.width; x++) {
+        // Ejemplo de señal: onda senoidal simple
+        const y = canvas.height / 2 + Math.sin(x * 0.1) * 40;
+        if (x === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.strokeStyle = 'blue';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Botón para cerrar la simulación
+      const btnCerrar = document.createElement('button');
+      btnCerrar.className = 'btn-cerrar';
+      btnCerrar.textContent = 'Cerrar Simulación';
+      btnCerrar.onclick = () => document.body.removeChild(simContainer);
+      simContainer.appendChild(btnCerrar);
+
+      // Agregar el contenedor al body para mostrar la simulación
+      document.body.appendChild(simContainer);
+    }
+
+    // Función para simular un circuito digital
+    function simularDigital() {
+      // Crear un contenedor modal para la simulación
+      const simContainer = document.createElement('div');
+      simContainer.className = 'sim-container';
+      simContainer.innerHTML = '<h3>Simulación de Circuito Digital</h3>';
+
+      // Ejemplo: Simulación de una compuerta AND
+      // Generamos dos entradas aleatorias (0 o 1)
+      const inputA = Math.round(Math.random());
+      const inputB = Math.round(Math.random());
+      // La salida es el resultado de la compuerta AND
+      const output = inputA && inputB;
+
+      const resultText = document.createElement('p');
+      resultText.textContent = `Entrada A: ${inputA} - Entrada B: ${inputB} ⇒ Salida (A AND B): ${output}`;
+      simContainer.appendChild(resultText);
+
+      // Botón para cerrar la simulación
+      const btnCerrar = document.createElement('button');
+      btnCerrar.className = 'btn-cerrar';
+      btnCerrar.textContent = 'Cerrar Simulación';
+      btnCerrar.onclick = () => document.body.removeChild(simContainer);
+      simContainer.appendChild(btnCerrar);
+
+      // Agregar el contenedor al body para mostrar la simulación
+      document.body.appendChild(simContainer);
+    }
 
     new Vue({
       el: '#app',
