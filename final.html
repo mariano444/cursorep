@@ -931,15 +931,18 @@
                               </button>
                           </div>
                           
-                          <!-- Step 2: Payment -->
+                            <!-- Step 2: Payment -->
                           <div class="form-step" id="step2">
                               <h3 class="text-xl font-semibold mb-4">Resumen de la Compra</h3>
-                              <p class="mb-4">Curso Profesional Reparación de celulares</p>
+                              <p class="mb-4">Curso Profesional - Reparación de Celulares</p>
+                            <p class="mb-4">¿Listo para convertirte en un experto en reparar celulares y acceder a nuevas oportunidades laborales? 🚀</p>
+                            <p class="mb-4">🔗 Aboná hoy y comenzá de inmediato.</p>
                               <p class="text-2xl font-bold mb-6">Total: $4990</p>
                               <div id="wallet_container"></div>
-                              <button type="button" class="w-full mt-4 bg-gray-300 text-gray-700 px-4 py-3 rounded hover:bg-gray-400 transition duration-300" onclick="prevStep()">
+                             <p class="mb-4">"Luego de abonar, te redireccionamos automáticamente a la plataforma educativa para comenzar el curso."</p>
+                              <!--button type="button" class="w-full mt-4 bg-gray-300 text-gray-700 px-4 py-3 rounded hover:bg-gray-400 transition duration-300" onclick="prevStep()">
                                   Volver
-                              </button>
+                          </button-->
                           </div>
                       </form>
 
@@ -1371,7 +1374,7 @@ document.getElementById('continue-btn').addEventListener('click', function() {
       strings: [
         'Avalado por las principales empresas.',
         'Certificación reconocida en la industria.',
-        'Instructores expertos en nóminas.'
+        'Instructores expertos.'
       ],
       typeSpeed: 50,
       backSpeed: 25,
@@ -1381,14 +1384,11 @@ document.getElementById('continue-btn').addEventListener('click', function() {
 
     // Contenido dinámico del curso
     const courseContent = [
-      'Fundamentos avanzados de la liquidación de sueldos',
-      'Marco legal y normativo actualizado',
-      'Cálculo preciso de remuneraciones y deducciones',
-      'Gestión estratégica de beneficios y compensaciones',
-      'Optimización de impuestos y contribuciones sociales',
-      'Dominio de software líder en nóminas',
-      'Análisis avanzado de costos laborales',
-      'Resolución de casos complejos y situaciones especiales'
+      '✅ Conceptos',
+      '✅ Fundamentos de la reparación de celulares',
+      '✅ Diagnóstico de fallas y solución de problemas comunes',
+      '✅ Uso de herramientas y equipos especializados',
+      '✅ Reemplazo de pantallas, baterías y otros componentes',
     ];
     const courseContentContainer = document.getElementById('course-content');
     courseContent.forEach((item, index) => {
@@ -1405,45 +1405,46 @@ document.getElementById('continue-btn').addEventListener('click', function() {
 
     // Testimonios
     const testimonials = [
-    { name: 'Mariana López', role: '', content: 'Este curso me ayudó a entender todos los aspectos de la liquidación de sueldos. Ahora puedo hacerlo sin miedo a cometer errores.' },
-  { name: 'Lucas Fernández', role: '', content: 'La explicación fue clara y directa. Me siento mucho más seguro manejando nóminas en mi trabajo.' },
-  { name: 'Sofía Ramírez', role: '', content: 'No tenía experiencia previa, pero gracias a este curso ahora puedo liquidar sueldos con total confianza.' },
-  { name: 'Javier Gómez', role: '', content: 'El curso es súper completo. Me dio herramientas prácticas que aplico todos los días en mi estudio contable.' },
-  { name: 'Carolina Díaz', role: '', content: 'Gracias a este curso, ahora puedo llevar la liquidación de sueldos en mi empresa sin depender de terceros.' },
-  { name: 'Martín Herrera', role: '', content: 'El contenido es muy claro y los ejemplos prácticos realmente me ayudaron a entender los conceptos.' },
-  { name: 'Valentina Torres', role: '', content: 'Los instructores explican muy bien y responden todas las dudas. Me encantó la parte práctica.' },
-  { name: 'Federico Rojas', role: '', content: 'Aprendí a manejar distintos convenios y situaciones especiales en la liquidación de sueldos. Muy útil.' },
-  { name: 'Agustina Pérez', role: '', content: 'La metodología del curso es excelente. Me dio la confianza para ofrecer servicios de liquidación de sueldos.' },
-  { name: 'Diego Sánchez', role: '', content: 'El material de estudio es muy completo y está actualizado. Lo recomiendo a cualquiera que quiera aprender.' },
-  { name: 'Camila Ortiz', role: '', content: 'Pude aplicar todo lo aprendido de inmediato en mi trabajo. La parte de software fue clave para mí.' },
-  { name: 'Tomás Medina', role: '', content: 'Antes dependía de un contador, pero ahora puedo liquidar los sueldos de mi equipo sin problemas.' },
-  { name: 'Natalia Álvarez', role: '', content: 'Las explicaciones son súper claras y los ejercicios prácticos te ayudan a entender todo.' },
-  { name: 'Facundo Guzmán', role: '', content: 'Un curso muy bien estructurado. Me ayudó a mejorar mis conocimientos y agilizar mi trabajo diario.' },
-  { name: 'Lorena Silva', role: '', content: 'Excelente curso, lleno de ejemplos prácticos y material actualizado.' },
-  { name: 'Emiliano Castro', role: '', content: 'Gracias a este curso, ahora puedo liquidar sueldos con total seguridad y sin errores.' },
-  { name: 'Julieta Vargas', role: '', content: 'Me pareció un curso muy dinámico y claro. Me sacó todas las dudas sobre retenciones y aportes.' },
-  { name: 'Fernando Molina', role: '', content: 'Aprendí muchísimo. Ahora entiendo la importancia de cada concepto en la liquidación de sueldos.' },
-  { name: 'Cecilia Núñez', role: '', content: 'Fue una excelente inversión. El contenido es claro y práctico, justo lo que necesitaba.' },
-  { name: 'Matías Benítez', role: '', content: 'El curso me dio las herramientas necesarias para ofrecer este servicio en mi estudio contable.' },
-  { name: 'Luciana Ramírez', role: '', content: 'Me encantó la manera en que explican todo. Ahora me siento más segura en mi trabajo.' },
-  { name: 'Gastón Paredes', role: '', content: 'Muy recomendable. Aprendí a calcular todo correctamente y a evitar errores comunes.' },
-  { name: 'Florencia Villalba', role: '', content: 'El curso es muy didáctico. Me sirvió para mejorar mis habilidades y avanzar en mi carrera.' },
-  { name: 'Ramiro Acosta', role: '', content: 'Ahora puedo calcular sueldos sin problemas y entiendo la normativa vigente.' },
-  { name: 'Paula Sosa', role: '', content: 'El curso me ayudó a perfeccionar mis conocimientos y a aplicarlos en mi trabajo diario.' },
-  { name: 'Ezequiel Muñoz', role: '', content: 'Muy claro y fácil de entender. Me permitió mejorar mis habilidades en liquidación de sueldos.' },
-  { name: 'Micaela Fernández', role: '', content: 'Antes me daba miedo calcular los sueldos, pero ahora lo hago con total confianza.' },
-  { name: 'Bruno Cabrera', role: '', content: 'Los profesores explican todo paso a paso. Muy recomendable para quienes quieran aprender desde cero.' },
-  { name: 'Sabrina Ocampo', role: '', content: 'Un curso muy completo. Me ayudó a organizar mejor la administración de mi empresa.' },
-  { name: 'Iván Ríos', role: '', content: 'Pude aclarar muchas dudas que tenía sobre impuestos y retenciones. Excelente curso.' },
-  { name: 'Daniela Figueroa', role: '', content: 'Ahora sé cómo calcular aguinaldos, vacaciones y demás conceptos sin depender de terceros.' },
-  { name: 'Marcos Luna', role: '', content: 'El contenido es muy práctico y aplicable a la vida real. Me ayudó muchísimo en mi estudio contable.' },
-  { name: 'Melina Duarte', role: '', content: 'El curso me dio las herramientas para mejorar mi desempeño laboral y crecer profesionalmente.' },
-  { name: 'Rodrigo Báez', role: '', content: 'Excelente curso, me sacó todas las dudas y me dio seguridad en mi trabajo.' },
-  { name: 'Carla Medina', role: '', content: 'Ahora puedo liquidar sueldos sin errores y con mayor rapidez. Me encantó el curso.' },
-  { name: 'Andrés Vallejo', role: '', content: 'Gracias a este curso, entendí la normativa y cómo aplicarla correctamente en mi trabajo.' },
-  { name: 'Belén Cabrera', role: '', content: 'Muy recomendado para quienes quieran aprender desde cero o mejorar sus conocimientos.' },
-  { name: 'Joaquín Torres', role: '', content: 'El curso me dio las herramientas necesarias para realizar liquidaciones de manera eficiente.' },
-  { name: 'Gabriela Flores', role: '', content: 'Gracias a este curso, ahora puedo manejar la liquidación de sueldos con total confianza.' }
+{ name: 'Matías Benítez', role: '', content: 'El curso me dio las herramientas necesarias para ofrecer servicios de reparación de celulares en mi taller.' },
+{ name: 'Luciana Ramírez', role: '', content: 'Me encantó la manera en que explican todo. Ahora me siento más segura reparando celulares.' },
+{ name: 'Gastón Paredes', role: '', content: 'Muy recomendable. Aprendí a diagnosticar correctamente y a evitar errores comunes en la reparación de dispositivos.' },
+{ name: 'Florencia Villalba', role: '', content: 'El curso es muy didáctico. Me sirvió para mejorar mis habilidades y avanzar en mi carrera en reparación de celulares.' },
+{ name: 'Ramiro Acosta', role: '', content: 'Ahora puedo solucionar problemas técnicos sin complicaciones y entiendo las especificaciones de cada dispositivo.' },
+{ name: 'Paula Sosa', role: '', content: 'El curso me ayudó a perfeccionar mis conocimientos y a aplicarlos en mi trabajo diario de reparación de celulares.' },
+{ name: 'Ezequiel Muñoz', role: '', content: 'Muy claro y fácil de entender. Me permitió mejorar mis habilidades en la reparación de celulares.' },
+{ name: 'Micaela Fernández', role: '', content: 'Antes me daba miedo reparar celulares, pero ahora lo hago con total confianza.' },
+{ name: 'Bruno Cabrera', role: '', content: 'Los profesores explican todo paso a paso. Muy recomendable para quienes quieran aprender desde cero la reparación de celulares.' },
+{ name: 'Sabrina Ocampo', role: '', content: 'Un curso muy completo. Me ayudó a organizar mejor mi taller y optimizar el proceso de reparación.' },
+{ name: 'Iván Ríos', role: '', content: 'Pude aclarar muchas dudas que tenía sobre el funcionamiento interno de los celulares. Excelente curso.' },
+{ name: 'Daniela Figueroa', role: '', content: 'Ahora sé cómo reparar pantallas, reemplazar baterías y solucionar otros problemas sin depender de terceros.' },
+{ name: 'Marcos Luna', role: '', content: 'El contenido es muy práctico y aplicable a la vida real. Me ayudó muchísimo en mi taller de reparación de celulares.' },
+{ name: 'Melina Duarte', role: '', content: 'El curso me dio las herramientas para mejorar mi desempeño laboral y crecer profesionalmente en el área de reparación de celulares.' },
+{ name: 'Rodrigo Báez', role: '', content: 'Excelente curso, me resolvió todas las dudas y me dio seguridad en mis reparaciones.' },
+{ name: 'Carla Medina', role: '', content: 'Ahora puedo reparar celulares sin errores y con mayor rapidez. Me encantó el curso.' },
+{ name: 'Andrés Vallejo', role: '', content: 'Gracias a este curso, entendí las especificaciones técnicas y cómo aplicarlas correctamente en mi trabajo.' },
+{ name: 'Mariana López', role: '', content: 'Este curso me ayudó a entender todos los aspectos de la reparación de celulares. Ahora puedo diagnosticar y arreglar dispositivos sin miedo a cometer errores.' },
+{ name: 'Lucas Fernández', role: '', content: 'La explicación fue clara y directa. Me siento mucho más seguro reparando celulares en mi trabajo.' },
+{ name: 'Sofía Ramírez', role: '', content: 'No tenía experiencia previa, pero gracias a este curso ahora puedo reparar celulares con total confianza.' },
+{ name: 'Javier Gómez', role: '', content: 'El curso es súper completo. Me dio herramientas prácticas que aplico todos los días en mi taller de reparación.' },
+{ name: 'Carolina Díaz', role: '', content: 'Gracias a este curso, ahora puedo ofrecer servicios de reparación de celulares en mi empresa sin depender de terceros.' },
+{ name: 'Martín Herrera', role: '', content: 'El contenido es muy claro y los ejemplos prácticos realmente me ayudaron a entender los conceptos de reparación.' },
+{ name: 'Valentina Torres', role: '', content: 'Los instructores explican muy bien y responden todas las dudas. Me encantó la parte práctica del curso.' },
+{ name: 'Federico Rojas', role: '', content: 'Aprendí a manejar distintos problemas y situaciones especiales en la reparación de celulares. Muy útil.' },
+{ name: 'Agustina Pérez', role: '', content: 'La metodología del curso es excelente. Me dio la confianza para ofrecer servicios de reparación de celulares.' },
+{ name: 'Diego Sánchez', role: '', content: 'El material de estudio es muy completo y está actualizado. Lo recomiendo a cualquiera que quiera aprender reparación de celulares.' },
+{ name: 'Camila Ortiz', role: '', content: 'Pude aplicar todo lo aprendido de inmediato en mi trabajo. La parte práctica sobre hardware y software fue clave para mí.' },
+{ name: 'Tomás Medina', role: '', content: 'Antes dependía de un técnico, pero ahora puedo reparar celulares por mi cuenta sin problemas.' },
+{ name: 'Natalia Álvarez', role: '', content: 'Las explicaciones son súper claras y los ejercicios prácticos te ayudan a entender todo sobre reparación de celulares.' },
+{ name: 'Facundo Guzmán', role: '', content: 'Un curso muy bien estructurado. Me ayudó a mejorar mis conocimientos y agilizar mi trabajo diario en mi taller de reparación.' },
+{ name: 'Lorena Silva', role: '', content: 'Excelente curso, lleno de ejemplos prácticos y material actualizado para la reparación de celulares.' },
+{ name: 'Emiliano Castro', role: '', content: 'Gracias a este curso, ahora puedo reparar celulares con total seguridad y sin errores.' },
+{ name: 'Julieta Vargas', role: '', content: 'Me pareció un curso muy dinámico y claro. Me aclaró todas mis dudas sobre el diagnóstico de fallas y reparaciones.' },
+{ name: 'Fernando Molina', role: '', content: 'Aprendí muchísimo. Ahora entiendo la importancia de cada concepto en la reparación de celulares.' },
+{ name: 'Cecilia Núñez', role: '', content: 'Fue una excelente inversión. El contenido es claro y práctico, justo lo que necesitaba para mejorar mis técnicas de reparación.' },
+{ name: 'Belén Cabrera', role: '', content: 'Muy recomendado para quienes quieran aprender desde cero o mejorar sus conocimientos en reparación de celulares.' },
+{ name: 'Joaquín Torres', role: '', content: 'El curso me dio las herramientas necesarias para realizar reparaciones de manera eficiente.' },
+{ name: 'Gabriela Flores', role: '', content: 'Gracias a este curso, ahora puedo reparar celulares con total confianza.' }
+
     ];
     let currentTestimonialIndex = 0;
     function renderTestimonial(index) {
@@ -1775,7 +1776,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Inicialización de MercadoPago
-  const mp = new MercadoPago('APP_USR-c879960d-a4ef-42cd-9ce1-2de5b532776f');
+  const mp = new MercadoPago('APP_USR-b10f6b44-3b18-45ba-a90a-11da19c99b4f');
 
   async function createPreference(nombre, email, celular) {
     try {
@@ -1783,7 +1784,7 @@ document.addEventListener("DOMContentLoaded", function() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer APP_USR-7768844323141640-020609-31205b38f84ff40c8f7a83b626df8b81-2082196144"
+          "Authorization": "Bearer APP_USR-5086203065140932-020608-9bf782c082f7c8564418f21a4459b54b-1670125470"
         },
         body: JSON.stringify({
           items: [{
@@ -1874,7 +1875,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const password = nombre+'2025';
       
       const alumno = await registrarAlumno(nombre, apellido, celular, email, password);
-      const curso_id = 1;
+      const curso_id = 2;
       const monto = 4990;
       const compra = await registrarCompra(alumno.id, curso_id, monto);
       compraId = compra.id; // Almacenar el ID de la compra
