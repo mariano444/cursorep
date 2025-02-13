@@ -1269,50 +1269,84 @@ async function actualizarProgreso(studentId, moduloActual, porcentajeCompletado)
     }
   ]
 },
-          {
-            title: 'Diagnóstico de Fallas en Celulares',
-            description: 'Esta clase se centra en el diagnóstico avanzado de fallas en dispositivos móviles. Se revisan técnicas para identificar problemas tanto en hardware como en software, utilizando herramientas especializadas y el análisis de circuitos. El estudiante aprenderá a interpretar diagramas, utilizar equipos de medición y realizar diagnósticos precisos para solucionar incidencias comunes y complejas en celulares.',
-            materials: [
-              { 
-                title: 'Identificación de Fallas Comunes', 
-                content: 'Estudio de problemas frecuentes en celulares, tales como fallas en la batería, pantalla, conectores y circuitos internos. Se abordan síntomas, causas y posibles soluciones mediante ejemplos reales.' 
-              },
-              { 
-                title: 'Herramientas de Diagnóstico', 
-                content: 'Descripción de equipos y software utilizados en el diagnóstico de fallas: multímetros, JTAG, analizadores lógicos y herramientas específicas para dispositivos móviles.' 
-              },
-              { 
-                title: 'Interpretación de Diagramas y Esquemas', 
-                content: 'Técnicas para leer y comprender diagramas eléctricos y esquemas de circuitos, facilitando la identificación de puntos críticos y el análisis de fallas.' 
-              }
-            ],
-            activities: [
-              { 
-                title: 'Caso Práctico de Diagnóstico', 
-                description: 'Análisis de un caso real en el que se debe identificar y solucionar una falla en un celular, aplicando las técnicas y herramientas aprendidas.' 
-              },
-              { 
-                title: 'Análisis con Software de Diagnóstico', 
-                description: 'Uso de aplicaciones especializadas para evaluar el funcionamiento interno del dispositivo y detectar anomalías en el rendimiento.' 
-              }
-            ],
-            quiz: [
-              {
-                question: '¿Cuál es un síntoma típico de falla en la batería de un celular?',
-                options: ['Sobrecalentamiento', 'Descarga rápida', 'Pantalla congelada', 'Mal funcionamiento del altavoz'],
-                correctAnswer: 1
-              },
-              {
-                question: '¿Qué herramienta de diagnóstico permite analizar la comunicación interna entre componentes de un celular?',
-                options: ['Multímetro', 'Software de análisis', 'JTAG', 'Analizador lógico'],
-                correctAnswer: 2
-              }
-            ],
-            completed: false,
-            unlocked: false,
-            estimatedTime: 5,
-            notes: ''
-          },
+         {
+  "title": "🔧 Diagnóstico y Reparación de Celulares",
+  "description": "Curso avanzado de diagnóstico y reparación de dispositivos móviles. Este curso se adapta a todos los niveles, promoviendo un aprendizaje activo y colaborativo mediante simulaciones, debates y actividades prácticas.",
+  "materials": [
+    {
+      "title": "🔋 Falla en la Batería",
+      "content": "<p><strong>Descripción:</strong> Análisis de problemas en baterías recargables (Li-ion/LiPo) con enfoque en parámetros eléctricos y térmicos.</p><h5>Descarga Rápida</h5><p><strong>Definición:</strong> Pérdida acelerada de capacidad útil (mAh) debido a degradación química, ciclos de carga excesivos o fallas en el circuito de gestión (BMS).</p><p><strong>Ejemplos:</strong></p><ul><li>Teléfono que se apaga al 30% de carga (voltaje real &lt; 3.4V bajo carga vs. 3.7V esperado).</li><li>Batería de laptop con 2,000 mAh medidos vs. 4,000 mAh declarados (50% degradación).</li></ul><p><strong>Mediciones:</strong></p><ul><li><em>Normal:</em> Voltaje en reposo: 3.7V - 4.2V, Resistencia interna: &lt; 100 mΩ, Capacidad: ±5% de la especificada.</li><li><em>Falla:</em> Voltaje bajo carga: &lt; 3.2V, Resistencia interna: &gt; 200 mΩ, Capacidad: &lt; 80% del nominal.</li></ul><p><strong>Procedimiento:</strong></p><ol><li>Medir voltaje en reposo con multímetro digital (conectar puntas a terminales (+) y (-)). Resultado esperado: 3.7V - 4.2V. Si falla, reemplazar batería.</li><li>Calcular capacidad real con analizador de baterías (ej: BLT) realizando una descarga controlada a 0.5C. Resultado esperado: Capacidad ≥ 80% del valor nominal. Si falla, reemplazar batería o recalibrar el BMS.</li></ol><h5>Sobrecalentamiento</h5><p><strong>Definición:</strong> Temperatura superficial &gt; 45°C en operación normal, causada por cortocircuitos internos, sobrecarga o mala disipación.</p><p><strong>Ejemplos:</strong></p><ul><li>Batería que alcanza 60°C durante carga (vs. máximo recomendado de 45°C).</li><li>Hinchazón visible por generación de gases (electrolito descompuesto).</li></ul><p><strong>Mediciones:</strong></p><ul><li><em>Normal:</em> Temperatura durante carga: 25°C - 40°C, Corriente de carga: 0.5C - 1C.</li><li><em>Falla:</em> Temperatura: &gt; 50°C, Corriente de fuga: &gt; 50 mA en reposo.</li></ul><p><strong>Procedimiento:</strong></p><ol><li>Medir la temperatura con termómetro IR (apuntar al centro de la batería). Resultado esperado: &lt; 45°C en carga máxima. Si falla, revisar circuito y reemplazar batería.</li><li>Medir la corriente de fuga con un multímetro en serie (conectar entre terminal (-) y el dispositivo). Resultado esperado: &lt; 5 mA. Si falla, reemplazar el BMS o aislar cortocircuitos.</li></ol>"
+    },
+    {
+      "title": "📱 Problemas en la Pantalla",
+      "content": "<p><strong>Descripción:</strong> Diagnóstico de fallas en pantallas LCD/OLED y sus componentes asociados.</p><h5>Píxeles Muertos</h5><p><strong>Definición:</strong> Puntos que no emiten luz (negros o blancos fijos) debido a fallas en transistores TFT o conexiones rotas.</p><p><strong>Ejemplos:</strong></p><ul><li>Zona de 5x5 píxeles negros en la esquina superior derecha.</li><li>Línea vertical blanca por fallo en el flex cable.</li></ul><p><strong>Mediciones:</strong></p><ul><li><em>Normal:</em> Continuidad en flex cable: 0 Ω, Voltaje en driver LCD: 3.3V ±5%.</li><li><em>Falla:</em> Resistencia en flex cable: &gt; 1 Ω, Voltaje en driver LCD: Menor a 3.0V o inestable.</li></ul><p><strong>Procedimiento:</strong></p><ol><li>Ejecutar un test de píxeles (app o color sólido). Resultado esperado: Pantalla uniforme sin puntos. Si se detectan más de 3 píxeles muertos, reemplazar la pantalla.</li><li>Medir la continuidad en el flex cable con un multímetro en modo continuidad. Resultado esperado: Beep continuo (0 Ω). Si falla, reemplazar o resoldar el cable.</li></ol><h5>Pantalla Congelada</h5><p><strong>Definición:</strong> Interrupción en la señal de video por fallas en la GPU, conectores o software.</p><p><strong>Ejemplos:</strong></p><ul><li>Pantalla que muestra una imagen estática tras una caída (posible desconexión de la GPU).</li><li>Artefactos gráficos causados por drivers corruptos.</li></ul><p><strong>Mediciones:</strong></p><ul><li><em>Normal:</em> Señal LVDS: 1.2V - 3.3V estable, Frecuencia de refresco: 60 Hz ±2%.</li><li><em>Falla:</em> Señal LVDS: 0V o con ruido, Frecuencia inestable o fuera de rango.</li></ul><p><strong>Procedimiento:</strong></p><ol><li>Medir la señal LVDS en el conector con un osciloscopio digital. Resultado esperado: Señal cuadrada estable. Si falla, revisar conexiones o la tarjeta gráfica.</li><li>Actualizar o reinstalar los drivers mediante software de diagnóstico. Resultado esperado: Versión compatible. Si falla, restaurar el sistema o flashear la BIOS.</li></ol>"
+    },
+    {
+      "title": "🔌 Conectores y Circuitos Internos",
+      "content": "<p><strong>Descripción:</strong> Análisis de fallas en interconexiones y PCB.</p><h5>Daño por Humedad</h5><p><strong>Definición:</strong> Corrosión en pistas o componentes por exposición a líquidos, identificable por residuos verdes o blancos.</p><p><strong>Ejemplos:</strong></p><ul><li>Teléfono mojado con corrosión en el conector de carga.</li><li>Cortocircuito entre pistas adyacentes en la PCB.</li></ul><p><strong>Mediciones:</strong></p><ul><li><em>Normal:</em> Resistencia entre pistas: &gt; 1 MΩ, Voltaje en componentes conforme al diseño.</li><li><em>Falla:</em> Resistencia entre pistas: &lt; 10 kΩ, Voltaje en componentes: 0V.</li></ul><p><strong>Procedimiento:</strong></p><ol><li>Realizar inspección visual con lupa 10x. Resultado esperado: PCB limpio y pistas intactas. Si hay corrosión, limpiar con alcohol isopropílico y reparar las pistas.</li><li>Medir la resistencia entre pistas con un multímetro en modo Ω. Resultado esperado: &gt; 1 MΩ sin cortocircuitos. Si falla, aislar con barniz o reemplazar la PCB.</li></ol><h5>Puerto de Carga Defectuoso</h5><p><strong>Definición:</strong> Falla mecánica o eléctrica que impide una conexión estable, debido a pines oxidados o soldaduras rotas.</p><p><strong>Ejemplos:</strong></p><ul><li>Puerto USB-C con movimiento excesivo por soldaduras desprendidas.</li><li>Voltaje irregular en el pin VBUS (de 5V esperado a 2V).</li></ul><p><strong>Mediciones:</strong></p><ul><li><em>Normal:</em> Resistencia de contacto: &lt; 0.5 Ω, Voltaje en VBUS: 5V ±5%.</li><li><em>Falla:</em> Resistencia de contacto: &gt; 2 Ω, Voltaje inestable o menor a 4.5V.</li></ul><p><strong>Procedimiento:</strong></p><ol><li>Medir el voltaje en el pin VBUS con un multímetro en DC (conectar la punta a VBUS y la otra a GND). Resultado esperado: 5.0V ±0.25V. Si falla, revisar o reemplazar el puerto.</li><li>Verificar la resistencia de contacto con un multímetro en modo Ω. Resultado esperado: &lt; 0.5 Ω. Si falla, limpiar o resoldar las conexiones.</li></ol>"
+    },
+    {
+      "title": "Módulo 1 - Herramientas y Técnicas de Diagnóstico",
+      "content": "<p><strong>Descripción:</strong> Desarrollo de competencias en el uso de instrumentos de medición y análisis para diagnóstico electrónico.</p><h5>Fundamentos Teóricos</h5><p><strong>Objetivo General:</strong> Desarrollar habilidades en el uso de instrumentos de medición para diagnóstico electrónico.</p><p><strong>Enfoque Pedagógico:</strong> Aprendizaje basado en proyectos y metodología STEM.</p><p><strong>Taxonomía de Bloom aplicada:</strong> Recordar, Aplicar, Analizar, Evaluar y Crear.</p><h5>Sección 1 - Multímetro</h5><p><strong>Teoría:</strong> Instrumento de medición eléctrica multifunción (V, A, Ω, continuidad) basado en la Ley de Ohm y el efecto Hall. Tipos: Analógico (aguja) y Digital (pantalla LCD).</p><p><strong>Ejemplo Práctico:</strong> Medir voltaje en una batería de 9V y resistencia en un circuito paralelo. Pasos: Calibrar, seleccionar el rango adecuado, conectar (Negro a COM, rojo a VΩ) y comparar el valor medido con la tolerancia. Errores comunes: Medir en circuito energizado o usar rango incorrecto.</p><p><strong>Resultados Esperados:</strong> Precisión del 98% en mediciones y tabla comparativa de valores teóricos vs. reales.</p><h5>Sección 2 - Osciloscopio</h5><p><strong>Teoría:</strong> Instrumento para visualizar señales eléctricas en el dominio temporal. Parámetros: Ancho de banda, tasa de muestreo y resolución vertical. Fórmulas: Frecuencia = 1/Periodo y Vp-p = V/div × número de divisiones.</p><p><strong>Casos de Estudio:</strong></p><ul><li><strong>Caso 1:</strong> Onda cuadrada distorsionada en microcontrolador. Diagnóstico: Falta de resistencia pull-up. Solución: Añadir resistor de 10kΩ a Vcc.</li><li><strong>Caso 2:</strong> Rizado en fuente de alimentación. Diagnóstico: Capacitor desgastado. Solución: Reemplazar capacitor de 1000μF.</li></ul><p><strong>Metodología de Análisis:</strong> Ajustar la base de tiempo, calibrar verticalmente, utilizar triggers y realizar mediciones automáticas.</p><h5>Evaluación Integradora</h5><p><strong>Proyecto Final:</strong> Diseñar una estación de diagnóstico portátil usando las herramientas aprendidas.</p><p><strong>Rúbrica:</strong> Precisión técnica (40%), metodología de solución (30%), documentación profesional (20%) e innovación (10%).</p>"
+    },
+    {
+      "title": "Módulo 2 - Interpretación de Diagramas",
+      "content": "<p><strong>Descripción:</strong> Profundización en el análisis de diagramas eléctricos mediante simbología y normativas.</p><h5>Marco Teórico</h5><p><strong>Simbología Electrónica:</strong></p><ul><li><strong>Componentes Pasivos:</strong> Resistencia (rectángulo con terminales), Capacitor (líneas paralelas, polarizado vs. no polarizado).</li><li><strong>Componentes Activos:</strong> Transistor BJT (flecha en el emisor, NPN/PNP), Microcontrolador (cuadrado con pines etiquetados).</li></ul><p><strong>Normativas:</strong> IEEE 315, IEC 60617.</p><p><strong>Teoría de Grafos:</strong> Análisis de nodos y mallas según las Leyes de Kirchhoff.</p><h5>Ejercicio Guiado</h5><p><strong>Diagrama de Placa Base:</strong> Pasos para identificar bloques funcionales (alimentación, E/S, procesamiento), trazar rutas críticas (reloj del sistema, buses de datos) y relacionar la información con la lista de materiales. Herramienta: Simulador de flujo de corriente con visualización térmica.</p><p><strong>Error Típico:</strong> Confusión entre el símbolo de tierra digital y el analógico.</p><h5>Estrategias Didácticas</h5><p><strong>Mapa Conceptual:</strong> Relacionar símbolos con sus funciones.</p><p><strong>Aprendizaje por Descubrimiento:</strong> Reconstruir diagramas a partir de prototipos físicos.</p><p><strong>Evaluación Formativa:</strong> Pruebas de emparejamiento y ejercicios de completar diagramas.</p><h5>Resultados de Aprendizaje</h5><p><strong>Nivel Básico:</strong> Identificar al menos el 90% de los componentes en diagramas simples.</p><p><strong>Nivel Avanzado:</strong> Elaborar esquemas con software CAD.</p><p><strong>Competencia Transversal:</strong> Fomentar el trabajo colaborativo en documentos técnicos.</p>"
+    },
+    {
+      "title": "Síntesis Pedagógica",
+      "content": "<p><strong>Descripción:</strong> Consolidación de aprendizajes y estrategias para un aprendizaje significativo.</p><p><strong>Teoría del Aprendizaje Significativo:</strong> Conectar nuevos conceptos con conocimientos previos en física y matemáticas.</p><p><strong>Andamiaje Educativo:</strong></p><ul><li>Simuladores virtuales como apoyo inicial.</li><li>Prácticas guiadas con instrumentos reales.</li><li>Proyectos autónomos supervisados.</li></ul><p><strong>Evaluación Competencial:</strong></p><ul><li><strong>Saber:</strong> Exámenes teóricos de opción múltiple.</li><li><strong>Saber Hacer:</strong> Listas de cotejo para procedimientos técnicos.</li><li><strong>Saber Ser:</strong> Rúbricas para valorar el trabajo en equipo y la ética profesional.</li></ul>"
+    }
+  ],
+  "activities": [
+    {
+      "title": "🔧 Caso Práctico Integral de Diagnóstico",
+      "description": "<h2>📱 Análisis de Fallas Compuestas</h2><p>En esta actividad, el alumno enfrenta un caso real con múltiples fallas para diagnosticar:</p><ul><li><strong>Descarga Rápida y Sobrecalentamiento:</strong> Evaluación conjunta de batería y circuitos de carga.</li><li><strong>Problemas en Encendido y Conectividad:</strong> Diagnóstico de fallas en botones, puertos y conexiones internas.</li></ul><h2>🛠️ Uso de Herramientas e Informe Técnico</h2><ul><li><strong>Simulador Avanzado:</strong> Integra mediciones de multímetro, pruebas JTAG y análisis con osciloscopio.</li><li><strong>Informe Técnico Detallado:</strong> Justifica cada paso del diagnóstico y propone soluciones fundamentadas.</li></ul>"
+    },
+    {
+      "title": "💻 Taller de Análisis con Software de Diagnóstico",
+      "description": "<h2>🛠️ Configuración y Uso del Software Especializado</h2><p>Actividad práctica que guía al alumno en la instalación, configuración y uso de software de diagnóstico en un entorno virtual:</p><ul><li><strong>Instalación y Personalización:</strong> Tutorial interactivo para ajustes avanzados.</li><li><strong>Simulaciones de Pruebas de Hardware:</strong> Ejercicios para medir parámetros críticos y analizar resultados.</li></ul><h2>🎮 Gamificación y Colaboración Digital</h2><ul><li><strong>Desafíos Interactivos:</strong> Actividades gamificadas que premian la precisión y rapidez.</li><li><strong>Foro de Discusión:</strong> Espacio para debatir dudas y compartir hallazgos.</li></ul>"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "❓ ¿Cuál es un síntoma típico de fallo en la batería de un celular?",
+      "options": [
+        "🔥 Sobrecalentamiento",
+        "🔋 Descarga rápida",
+        "❄️ Pantalla congelada",
+        "📢 Mal funcionamiento del altavoz"
+      ],
+      "correctAnswer": 1,
+      "feedback": "✅ La descarga rápida indica pérdida de capacidad o fallo interno en la batería. <a href='#'>Ir al simulador</a>."
+    },
+    {
+      "question": "❓ ¿Qué herramienta permite analizar la comunicación interna en un celular?",
+      "options": [
+        "🔧 Multímetro",
+        "💻 Software de análisis",
+        "💾 JTAG",
+        "📊 Analizador lógico"
+      ],
+      "correctAnswer": 2,
+      "feedback": "✅ El JTAG permite la comunicación directa con el microcontrolador para detectar errores en el firmware. <a href='#'>Ver tutorial</a>."
+    },
+    {
+      "question": "❓ ¿Qué recurso es fundamental para interpretar correctamente un diagrama eléctrico?",
+      "options": [
+        "📖 Glosario visual de símbolos",
+        "🔧 Simulador de circuitos",
+        "💻 Software de diagnóstico",
+        "📊 Reporte interactivo"
+      ],
+      "correctAnswer": 0,
+      "feedback": "✅ El glosario visual de símbolos facilita la identificación y análisis de fallas. <a href='#'>Explorar glosario</a>."
+    }
+  ],
+  "notes": "",
+  "complementaryNotes": "",
+  "completed": false
+},
           {
             title: 'Reparación Avanzada y Microssoldadura',
             description: 'Técnicas avanzadas de reparación y reemplazo de componentes a nivel de placa.',
