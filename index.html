@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PayrollPro - Curso Profesional Avanzado Reparación de celulares</title>
-  <meta name="description" content="Domina la liquidación de sueldos con nuestro curso líder en la industria. Certificación reconocida, instructores expertos y contenido actualizado.">
+  <meta name="description" content="Domina la Reparación de celulares con nuestro curso líder en la industria. Certificación reconocida, instructores expertos y contenido actualizado.">
   
   <!-- Fuentes y estilos -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,11 +17,93 @@
   <!-- Estilos personalizados -->
   <style>
     :root {
-      --primary-color: #4a90e2;
-      --secondary-color: #50e3c2;
+      --primary-color: #2A2A2A;  /* Negro tecnológico */
+      --secondary-color: #FF6B35; /* Naranja energético */
+      --accent-color: #00C49A; /* Verde tecnológico */
     }
-    body {
-      font-family: 'Inter', sans-serif;
+
+    .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #3b82f6, #2563eb);
+        }
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translatey(0px); }
+            50% { transform: translatey(-20px); }
+            100% { transform: translatey(0px); }
+        }
+
+    /* Mejoras en la sección Hero */
+    .hero-section {
+      background: linear-gradient(to right, #2A2A2A 40%, #3A3A3A);
+      color: white;
+    }
+
+    .hero-image {
+      border: 3px solid var(--secondary-color);
+      box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+    }
+
+    /* Nuevo diseño para tarjetas de características */
+    .feature-card {
+      background: rgba(255,255,255,0.95);
+      border-left: 4px solid var(--secondary-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Estilo para sección de herramientas */
+    .tool-badge {
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      margin: 5px;
+    }
+
+    .tool-badge i {
+      margin-right: 8px;
+      color: var(--secondary-color);
+    }
+
+    /* Diseño moderno para precios */
+    .pricing-card {
+      background: linear-gradient(145deg, #2A2A2A 0%, #3A3A3A 100%);
+      border: 2px solid var(--secondary-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,107,53,0.1), transparent);
+      transform: rotate(45deg);
+    }
+
+    /* Mejoras en la línea de tiempo */
+    .timeline-item::after {
+      background: var(--secondary-color);
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--secondary-color);
+    }
+
+    .timeline::after {
+      background: var(--secondary-color);
     }
     /* Animación flotante */
     @keyframes float {
@@ -364,7 +446,7 @@
           <div class="mt-12 flex flex-wrap items-center gap-6 opacity-90">
             <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm">
               <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <span class="font-medium text-gray-700">4.9/5 en +2,300 reseñas</span>
+              <span class="font-medium text-gray-700">4.9/5 en +4,300 reseñas</span>
             </div>
           </div>
             <!--button class="bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-lg text-lg font-semibold transition transform hover:bg-blue-50 hover:scale-105" id="demo-button">
@@ -440,54 +522,184 @@
     </section>
 
     <!-- Sección Características -->
-    <section id="features" class="bg-gray-100 py-16 md:py-24">
-      <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Características del Curso</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="feature-card bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
-            <i data-feather="book-open" class="w-12 h-12 text-blue-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Contenido Actualizado</h3>
-            <p class="text-gray-600">Material siempre al día tendencias.</p>
+    <section id="features" class="bg-gray-100 py-20 sm:py-32">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="lg:text-center">
+              <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Características</h2>
+              <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                  Un curso diseñado para tu éxito
+              </p>
+              <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                  Descubre por qué nuestro curso es líder en la industria de reparación de celulares.
+              </p>
           </div>
-          <!--div class="feature-card bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
-            <i data-feather="users" class="w-12 h-12 text-blue-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Clases en Vivo</h3>
-            <p class="text-gray-600">Sesiones interactivas con expertos del sector.</p>
-          </div-->
-          <div class="feature-card bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
-            <i data-feather="award" class="w-12 h-12 text-blue-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Certificación Avalada</h3>
-            <p class="text-gray-600">Certificado reconocido por importantes empresas.</p>
+
+          <div class="mt-10" style="justify-items: center;">
+              <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                  <div class="relative">
+                      <dt>
+                          <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                              </svg>
+                          </div>
+                          <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Contenido Actualizado</p>
+                      </dt>
+                      <dd class="mt-2 ml-16 text-base text-gray-500">Material siempre al día con las últimas tendencias.</dd>
+                  </div>
+
+                  <div class="relative">
+                      <dt>
+                          <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                              </svg>
+                          </div>
+                          <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Certificación Avalada</p>
+                      </dt>
+                      <dd class="mt-2 ml-16 text-base text-gray-500">Certificado reconocido por importantes empresas.</dd>
+                  </div>
+
+                  <div class="relative">
+                      <dt>
+                          <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                              </svg>
+                          </div>
+                          <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Casos Prácticos Reales</p>
+                      </dt>
+                      <dd class="mt-2 ml-16 text-base text-gray-500">Aplicación práctica en escenarios reales.</dd>
+                  </div>
+
+                  <div class="relative">
+                      <dt>
+                          <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                          </div>
+                          <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Acceso 24/7</p>
+                      </dt>
+                      <dd class="mt-2 ml-16 text-base text-gray-500">Estudia a tu ritmo con acceso ilimitado.</dd>
+                  </div>
+
+                  <div class="relative">
+                      <dt>
+                          <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                              </svg>
+                          </div>
+                          <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Soporte Personalizado</p>
+                      </dt>
+                      <dd class="mt-2 ml-16 text-base text-gray-500">Asistencia de tutores expertos cuando la necesites.</dd>
+                  </div>
+
+                  <div class="relative">
+                      <dt>
+                          <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                              </svg>
+                          </div>
+                          <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Herramientas Especializadas</p>
+                      </dt>
+                      <dd class="mt-2 ml-16 text-base text-gray-500">Aprende a usar las herramientas más avanzadas del mercado.</dd>
+                  </div>
+              </dl>
           </div>
-          <div class="feature-card bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
-            <i data-feather="trending-up" class="w-12 h-12 text-blue-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Casos Prácticos Reales</h3>
-            <p class="text-gray-600">Aplicación práctica en escenarios reales.</p>
-          </div>
-          <div class="feature-card bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="400">
-            <i data-feather="clock" class="w-12 h-12 text-blue-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Acceso 24/7</h3>
-            <p class="text-gray-600">Estudia a tu ritmo con acceso ilimitado.</p>
-          </div>
-          <div class="feature-card bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="500">
-            <i data-feather="headphones" class="w-12 h-12 text-blue-600 mb-4"></i>
-            <h3 class="text-xl font-semibold mb-2">Soporte Personalizado</h3>
-            <p class="text-gray-600">Asistencia de tutores expertos cuando la necesites.</p>
-          </div>
-        </div>
       </div>
-    </section>
+  </section>
 
     <!-- Sección Contenido del Curso -->
     <section id="course-overview" class="py-16 md:py-24 bg-white">
       <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Contenido del Curso</h2>
+        <div class="lg:text-center">
+          <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Contenido del Curso</h2>
+          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Lo que aprenderás
+          </p>
+          <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              Nuestro curso cubre todos los aspectos esenciales de la reparación de celulares.
+          </p>
+      </div>
+
+      <div class="mt-10">
+          <ul class="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Conceptos básicos de electrónica</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Fundamentos de la reparación de celulares</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Diagnóstico de fallas y solución de problemas comunes</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Uso de herramientas y equipos especializados</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Reemplazo de pantallas, baterías y otros componentes</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Técnicas avanzadas de microsoldadura</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Reparación de problemas de software</p>
+              </li>
+              <li class="flex items-start">
+                  <div class="flex-shrink-0">
+                      <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                  </div>
+                  <p class="ml-3 text-base text-gray-700">Mantenimiento preventivo de dispositivos móviles</p>
+              </li>
+          </ul>
+      </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12"></h2>
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div data-aos="fade-right">
-            <h3 class="text-2xl font-semibold mb-6">Lo que aprenderás:</h3>
-            <ul class="space-y-4" id="course-content">
-              <!-- Se insertará el contenido dinámicamente -->
-            </ul>
+            <h3 class="text-2xl font-semibold mb-6">Demostración:</h3>
+            <!--<ul class="space-y-4" id="course-content">
+               Se insertará el contenido dinámicamente 
+            </ul>-->
           </div>
           <div class="relative" data-aos="fade-left">
            
@@ -664,106 +876,107 @@
       </div>
     </section>
 
- <!-- Sección de Línea del Tiempo (Plan de Estudios) -->
- <section id="timeline" class="py-16">
-  <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">
-      Nuestro Completo Plan de Estudios
-    </h2>
-    <div class="timeline">
-      <!-- Módulo 1: Introducción y Fundamentos (derecha) -->
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Introducción y Fundamentos</h3>
-        <p class="text-gray-600">Introducción a la Electrónica.</p>
+
+    <section id="timeline" class="py-20 sm:py-32 bg-gray-100">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="lg:text-center mb-16">
+              <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Plan de Estudios</h2>
+              <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                  Nuestro Completo Plan de Estudios
+              </p>
+          </div>
+
+          <div class="relative">
+              <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Introducción y Fundamentos</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Introducción a la Electrónica.</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">2</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Conceptos</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Herramientas y Técnicas de Reparación: Del Principiante al Avanzado</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Estructura</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Diagnóstico de Fallas en Celulares</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">4</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Diagnóstico de Fallas en Celulares</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Estudio de problemas frecuentes en celulares, tales como fallas en la batería, pantalla, conectores y circuitos internos.</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">5</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Reparación Avanzada y Microsoldadura</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Técnicas avanzadas de reparación y reemplazo de componentes a nivel de placa</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">6</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Reparación de Pantallas y Displays</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Técnicas para diagnosticar y reparar problemas en pantallas de celulares.</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">7</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Reparación de Problemas de Batería</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Diagnóstico y solución de problemas relacionados con la batería y carga.</p>
+                  </div>
+              </div>
+
+              <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                  <div class="order-1 w-5/12"></div>
+                  <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-8 h-8 rounded-full">
+                      <h1 class="mx-auto font-semibold text-lg text-white">8</h1>
+                  </div>
+                  <div class="order-1 bg-white rounded-lg shadow-xl w-5/12 px-6 py-4">
+                      <h3 class="mb-3 font-bold text-gray-800 text-xl">Reparación de Problemas de Software</h3>
+                      <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Solución de problemas de software y actualización de sistemas operativos.</p>
+                  </div>
+              </div>
+          </div>
       </div>
-      <!-- Módulo 2: Conceptos Básicos de Liquidación (izquierda) -->
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Conceptos</h3>
-        <p class="text-gray-600">Herramientas y Técnicas de Reparación: Del Principiante al Avanzado</p>
-      </div>
-      <!-- Módulo 3: Estructura del Recibo de Sueldo (derecha) -->
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Estructura</h3>
-        <p class="text-gray-600">Diagnóstico de Fallas en Celulares</p>
-      </div>
-      <!-- Módulo 4: Deducciones Legales I - Aportes Jubilatorios (izquierda) -->
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Diagnóstico de Fallas en Celulares</h3>
-        <p class="text-gray-600">Estudio de problemas frecuentes en celulares, tales como fallas en la batería, pantalla, conectores y circuitos internos. Se abordan síntomas, causas y posibles soluciones mediante ejemplos reales..</p>
-      </div>
-      <!-- Módulo 5: Deducciones Legales II - Obra Social y PAMI (derecha) -->
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Reparación Avanzada y Microssoldadura</h3>
-        <p class="text-gray-600">Técnicas avanzadas de reparación y reemplazo de componentes a nivel de placa</p>
-      </div>
-      <!-- Módulo 6: Normativas y Leyes (Ley 20.744) (izquierda) -->
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Reparación de Pantallas y Displays</h3>
-        <p class="text-gray-600">Técnicas para diagnosticar y reparar problemas en pantallas de celulares.</p>
-      </div>
-      <!-- Módulo 7: Cálculo del Salario Neto (derecha) -->
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Reparación de Problemas de Batería</h3>
-        <p class="text-gray-600">ADiagnóstico y solución de problemas relacionados con la batería y carga.</p>
-      </div>
-      <!-- Módulo 8: Calculadora Básica (izquierda) -->
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Reparación de Problemas de Software</h3>
-        <p class="text-gray-600">Solución de problemas de software y actualización de sistemas operativos.</p>
-      </div>
-      <!-- Módulo 9: Calculadora Avanzada (derecha) 
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Módulo 9: Calculadora Avanzada</h3>
-        <p class="text-gray-600">Domina funciones avanzadas para escenarios complejos.</p>
-      </div>-->
-      <!-- Módulo 10: Ejemplo Real de Recibo (izquierda) 
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Módulo 10: Ejemplo Real de Recibo</h3>
-        <p class="text-gray-600">Analiza un caso práctico para consolidar tus conocimientos.</p>
-      </div>-->
-      <!-- Módulo 11: Actividad Práctica – Completar Recibo (derecha)
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Módulo 11: Actividad Práctica – Completar Recibo</h3>
-        <p class="text-gray-600">Participa en ejercicios interactivos para poner en práctica lo aprendido.</p>
-      </div> -->
-      <!-- Módulo 12: Complementos – SAC (izquierda) 
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Módulo 12: Complementos – SAC</h3>
-        <p class="text-gray-600">Conoce los conceptos detrás del Sueldo Anual Complementario.</p>
-      </div>-->
-      <!-- Módulo 13: Complementos – Vacaciones (derecha) 
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Módulo 13: Complementos – Vacaciones</h3>
-        <p class="text-gray-600">Aprende sobre el cálculo y disfrute de las vacaciones.</p>
-      </div>-->
-      <!-- Módulo 14: Complementos – Horas Extras (izquierda)
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Módulo 14: Complementos – Horas Extras</h3>
-        <p class="text-gray-600">Domina el cálculo de remuneraciones adicionales por horas extras.</p>
-      </div> -->
-      <!-- Módulo 15: Casos Especiales (derecha)
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Módulo 15: Casos Especiales</h3>
-        <p class="text-gray-600">Explora situaciones particulares y sus soluciones.</p>
-      </div> -->
-      <!-- Módulo 16: FAQ (izquierda) 
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Módulo 16: FAQ</h3>
-        <p class="text-gray-600">Resuelve las dudas más frecuentes sobre el proceso de liquidación.</p>
-      </div>-->
-      <!-- Módulo 17: Examen Final (derecha) 
-      <div class="timeline-item right" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Módulo 17: Examen Final</h3>
-        <p class="text-gray-600">Pon a prueba todo lo aprendido con un examen interactivo.</p>
-      </div>-->
-      <!-- Módulo 18: Conclusiones y Recursos (izquierda) 
-      <div class="timeline-item left" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Módulo 18: Conclusiones y Recursos</h3>
-        <p class="text-gray-600">Cierra el curso con un resumen y acceso a recursos adicionales.</p>
-      </div>-->
-    </div>
-  </div>
-</section>
+  </section>
 
 <!-- Sección de Vista Previa del Plan de Estudios 
 <section id="curriculum-preview" class="bg-gray-100 py-16">
@@ -1382,7 +1595,7 @@ document.getElementById('continue-btn').addEventListener('click', function() {
       loop: true
     });
 
-    // Contenido dinámico del curso
+    /*Contenido dinámico del curso
     const courseContent = [
       '✅ Conceptos',
       '✅ Fundamentos de la reparación de celulares',
@@ -1401,7 +1614,7 @@ document.getElementById('continue-btn').addEventListener('click', function() {
         li.classList.remove('opacity-0', 'translate-y-4');
         feather.replace();
       }, index * 100);
-    });
+    });*/
 
     // Testimonios
     const testimonials = [
