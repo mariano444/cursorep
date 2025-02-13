@@ -1789,7 +1789,7 @@ document.addEventListener("DOMContentLoaded", function() {
         body: JSON.stringify({
           items: [{
             title: "Curso Profesional Reparación de celulares",
-            quantity: 2,
+            quantity: 1,
             currency_id: "ARS",
             unit_price: 4990
           }],
@@ -1875,7 +1875,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const password = nombre+'2025';
       
       const alumno = await registrarAlumno(nombre, apellido, celular, email, password);
-      const curso_id = 1;
+      const curso_id = 2;
       const monto = 4990;
       const compra = await registrarCompra(alumno.id, curso_id, monto);
       compraId = compra.id; // Almacenar el ID de la compra
